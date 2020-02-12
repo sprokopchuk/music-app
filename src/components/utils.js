@@ -6,7 +6,7 @@ const saveToLocalStorage = (key, value) => {
   return global.localStorage.setItem(key, value);
 };
 
-export default {
+export {
   getFromLocalStorage,
   saveToLocalStorage
 }

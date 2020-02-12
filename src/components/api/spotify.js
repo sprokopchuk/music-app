@@ -13,9 +13,7 @@ const authorize = () => {
       'Authorization': 'Basic ' + global.btoa(CLIENT_ID  + ':' + CLIENT_SECRET),
       'Content-Type': 'application/x-www-form-urlencoded'
     },
-    data: {
-      'grant_type': 'client_credentials'
-    }
+    data: 'grant_type=client_credentials'
   })
 };
 
