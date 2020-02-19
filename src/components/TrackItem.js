@@ -1,10 +1,10 @@
 import React from 'react';
-import '../css/track_item.css'
+import '../css/track_item.scss'
 
-const TrackItem = ({ track }) => {
+const TrackItem = ({ track, onTrackClick }) => {
   return (
     <div className='item track-item'>
-      <i className="music icon"></i>
+      <i className="icon" onClick={() =>{ onTrackClick(track) }}/>
       <div className='content'>
         <div className='ui grid'>
           <div className="eight wide column">

@@ -4,7 +4,7 @@ import spotify from './api/spotify';
 import TrackList from "./TrackList";
 
 class App extends React.Component {
-  state = { tracks: [] }
+  state = { tracks: [], trackSelected: null }
 
   componentDidMount() {
 
@@ -21,15 +21,19 @@ class App extends React.Component {
     });
   };
 
+  onTrackClick = (track) => {
+    this.setState({ trackSelected: track });
+  }
+
   render() {
     return (
       <div className='ui container'>
         <SearchBar onFormSubmit={this.onFormSubmit}/>
-        <TrackList tracks={this.state.tracks} />
+        <TrackList tracks={this.state.tracks}  onTrackClick={this.onTrackClick}/>
       </div>
     )
   }
 
-};
+}
 
 export default App;
