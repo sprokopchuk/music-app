@@ -11,4 +11,9 @@
       content: '\f04b';
     }
   }
+  &.isSelected {
+    .icon::before {
+      content: '\f04b';
+    }
+  }
 }
