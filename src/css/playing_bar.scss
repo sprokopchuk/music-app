@@ -1,4 +1,11 @@
 .playing-bar {
   bottom: 0;
+  display: flex;
+  text-align: center;
   position: sticky;
+  height: 100px;
+
+  .play, .pause {
+    cursor: pointer;
+  }
 }
