@@ -2,13 +2,8 @@ import React from 'react';
 import cn from 'classnames';
 
 class AudioPlayer extends React.Component {
-  state = { play: true };
 
-  constructor(props) {
-    super(props);
-    this.audio = new Audio(this.props.preview_url);
-    this.audio.play();
-  }
+  state = { play: true, duration: 0 };
 
   togglePlay = () => {
     if (this.state.play) {
@@ -20,11 +15,27 @@ class AudioPlayer extends React.Component {
     }
   };
 
+  onPlay = () => {
+    this.setState({ play: true });
+  };
+
+  onTimeUpdate = () => {
+    const duration = Math.floor(this.audio.currentTime) / Math.floor(this.audio.duration) * 100;
+    this.setState({ duration: duration });
+  };
+
   render() {
     return (
       <React.Fragment>
-        <div className="ui top attached progress">
-          <div className="bar"></div>
+        <div className="ui top attached progress" >
+          <div className="bar" style={{width: `${this.state.duration}%`}} />
+          <audio
+            ref={(audio) => { this.audio = audio }}
+            src={this.props.preview_url}
+            onPlay={this.onPlay}
+            onTimeUpdate={this.onTimeUpdate}
+            autoPlay
+          />
         </div>
         <i className={cn('icon', { pause: this.state.play, play: !this.state.play })} onClick={this.togglePlay}/>
       </React.Fragment>
