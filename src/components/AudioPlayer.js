@@ -2,7 +2,6 @@ import React from 'react';
 import cn from 'classnames';
 
 class AudioPlayer extends React.Component {
-
   state = { play: true, duration: 0 };
 
   togglePlay = () => {
