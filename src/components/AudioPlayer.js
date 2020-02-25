@@ -23,6 +23,10 @@ class AudioPlayer extends React.Component {
     this.setState({ duration: duration });
   };
 
+  onEnded = () => {
+    this.setState({ play: false })
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -33,6 +37,7 @@ class AudioPlayer extends React.Component {
             src={this.props.preview_url}
             onPlay={this.onPlay}
             onTimeUpdate={this.onTimeUpdate}
+            onEnded={this.onEnded}
             autoPlay
           />
         </div>
