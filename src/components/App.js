@@ -7,10 +7,10 @@ import PlayingBar from './PlayingBar';
 class App extends React.Component {
   state = { tracks: [], trackSelected: null }
 
-  onFormSubmit = () => {
+  onFormSubmit = (term) => {
     spotify.get('/search', {
       params: {
-        q: 'muse',
+        q: term,
         type: 'track'
       }
     }).then((response) => {
