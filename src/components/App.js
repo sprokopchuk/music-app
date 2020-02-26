@@ -21,18 +21,17 @@ class App extends React.Component {
   };
 
   onTrackClick = (track) => {
+    if(!track.preview_url) return;
     this.setState({ trackSelected: track });
   };
 
-  isSelected = (track) => {
-    return this.state.trackSelected === track;
-  };
 
   render() {
     return (
       <div className='ui container'>
         <SearchBar onFormSubmit={this.onFormSubmit}/>
-        <TrackList tracks={this.state.tracks} onTrackClick={this.onTrackClick} isSelected={this.isSelected}/>
+        <TrackList tracks={this.state.tracks} onTrackClick={this.onTrackClick}
+                   trackSelected={this.state.trackSelected}/>
         <PlayingBar track={this.state.trackSelected}/>
       </div>
     )

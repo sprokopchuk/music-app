@@ -1,13 +1,13 @@
 .track-item {
   .icon {
-    cursor: pointer;
     min-width: 18px;
     &::before {
       content: '\f001';
     }
   }
   &:hover {
-    .icon::before {
+    :not(.disabled).icon::before {
+      cursor: pointer;
       content: '\f04b';
     }
   }

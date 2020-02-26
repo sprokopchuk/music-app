@@ -2,7 +2,9 @@ import React from 'react';
 import { isPresent } from './collection';
 import TrackItem from './TrackItem';
 
-const TrackList = ({ tracks, onTrackClick, isSelected }) => {
+
+
+const TrackList = ({ tracks, onTrackClick, trackSelected }) => {
   return (
     <React.Fragment>
       {
@@ -12,7 +14,7 @@ const TrackList = ({ tracks, onTrackClick, isSelected }) => {
               { tracks.map(track => <TrackItem track={track}
                                                key={track.id}
                                                onTrackClick={onTrackClick}
-                                               isSelected={isSelected}/>) }
+                                               trackSelected={trackSelected}/>) }
             </div>
           </div>
       }
