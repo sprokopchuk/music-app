@@ -5,7 +5,7 @@ import TrackList from './TrackList';
 import PlayingBar from './PlayingBar';
 
 class App extends React.Component {
-  state = { tracks: [], trackSelected: null }
+  state = { tracks: [], trackSelected: null };
 
   onFormSubmit = (term) => {
     spotify.get('/search', {
@@ -24,7 +24,6 @@ class App extends React.Component {
     if(!track.preview_url) return;
     this.setState({ trackSelected: track });
   };
-
 
   render() {
     return (

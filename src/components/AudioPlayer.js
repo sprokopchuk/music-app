@@ -4,7 +4,7 @@ import cn from 'classnames';
 class AudioPlayer extends React.Component {
   state = { play: true, duration: 0 };
 
-  togglePlay = () => {
+  onTogglePlay = () => {
     if (this.state.play) {
       this.audio.pause();
       this.setState({ play: false })
@@ -34,14 +34,14 @@ class AudioPlayer extends React.Component {
           <div className="bar" style={{width: `${this.state.duration}%`}} />
           <audio
             ref={(audio) => { this.audio = audio }}
-            src={this.props.preview_url}
+            src={this.props.source}
             onPlay={this.onPlay}
             onTimeUpdate={this.onTimeUpdate}
             onEnded={this.onEnded}
             autoPlay
           />
         </div>
-        <i className={cn('icon', { pause: this.state.play, play: !this.state.play })} onClick={this.togglePlay}/>
+        <i className={cn('icon', { pause: this.state.play, play: !this.state.play })} onClick={this.onTogglePlay}/>
       </React.Fragment>
     )
   }

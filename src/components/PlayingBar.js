@@ -9,7 +9,7 @@ const PlayingBar = ({ track }) => {
         track &&
           <div className='playing-bar'>
             <div className="ui bottom attached segment">
-              <AudioPlayer {...track} />
+              <AudioPlayer source={track.preview_url} />
             </div>
           </div>
       }
