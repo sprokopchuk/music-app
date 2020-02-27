@@ -1,8 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import spotify from './api/spotify';
-import TrackList from './TrackList';
-import PlayingBar from './PlayingBar';
+import AudioPlayer from './AudioPlayer';
 
 class App extends React.Component {
   state = { tracks: [], trackSelected: null };
@@ -29,9 +28,11 @@ class App extends React.Component {
     return (
       <div className='ui container'>
         <SearchBar onFormSubmit={this.onFormSubmit}/>
-        <TrackList tracks={this.state.tracks} onTrackClick={this.onTrackClick}
-                   trackSelected={this.state.trackSelected}/>
-        <PlayingBar track={this.state.trackSelected}/>
+        <AudioPlayer
+          tracks={this.state.tracks}
+          trackSelected={this.state.trackSelected}
+          onTrackClick={this.onTrackClick}
+        />
       </div>
     )
   }

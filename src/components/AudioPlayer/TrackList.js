@@ -1,5 +1,5 @@
 import React from 'react';
-import { isPresent } from './collection';
+import { isPresent } from '../collection';
 import TrackItem from './TrackItem';
 
 const TrackList = ({ tracks, onTrackClick, trackSelected }) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import '../css/track_item.scss'
+import '../../css/track_item.scss'
 
 class TrackItem extends React.Component {
   render () {
