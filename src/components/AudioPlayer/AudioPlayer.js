@@ -3,14 +3,15 @@ import TrackList from './TrackList';
 import PlayingBar from './PlayingBar';
 
 class AudioPlayer extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = { play: true, duration: 0 };
-    this.audio = React.createRef();
-  }
+  state = { play: false, duration: 0 };
+  audio = React.createRef();
 
   onTogglePlay = () => {
+    if(!this.props.trackSelected) {
+      this.props.loadFirstTrack();
+      return;
+    }
+
     if (this.state.play) {
       this.audio.current.pause();
       this.setState({ play: false })
@@ -30,16 +31,21 @@ class AudioPlayer extends React.Component {
   };
 
   onEnded = () => {
-    this.setState({ play: false })
+    this.props.loadNextTrack();
   };
 
   render() {
     return (
       <React.Fragment>
-        <TrackList tracks={this.props.tracks} onTrackClick={this.props.onTrackClick}
-                   trackSelected={this.props.trackSelected}/>
+        <TrackList
+          tracks={this.props.tracks}
+          onTrackClick={this.props.onTrackClick}
+          trackSelected={this.props.trackSelected}
+          onTogglePlay={this.onTogglePlay}
+          isPlaying={this.state.play}
+        />
         <PlayingBar
-          source={this.props.trackSelected}
+          source={this.props.trackSelected && this.props.trackSelected.preview_url}
           onTogglePlay={this.onTogglePlay}
           onEnded={this.onEnded}
           onTimeUpdate={this.onTimeUpdate}

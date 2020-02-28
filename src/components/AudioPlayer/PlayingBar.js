@@ -6,23 +6,22 @@ const PlayingBar = ({ source, duration, onPlay, onTimeUpdate, onEnded, onToggleP
   return (
     <React.Fragment>
       {
-        source &&
-          <div className='playing-bar'>
-            <div className="ui bottom attached segment">
-              <div className="ui top attached progress" >
-                <div className="bar" style={{width: `${duration}%`}} />
-                <audio
-                  ref={audioRef}
-                  src={source.preview_url}
-                  onPlay={onPlay}
-                  onTimeUpdate={onTimeUpdate}
-                  onEnded={onEnded}
-                  autoPlay
-                />
-              </div>
-              <i className={cn('icon', { pause: isPlaying, play: !isPlaying })} onClick={onTogglePlay}/>
+        <div className='playing-bar'>
+          <div className="ui bottom attached segment">
+            <div className="ui top attached progress" >
+              <div className="bar" style={{width: `${duration}%`}} />
+              <audio
+                ref={audioRef}
+                src={source}
+                onPlay={onPlay}
+                onTimeUpdate={onTimeUpdate}
+                onEnded={onEnded}
+                autoPlay
+              />
             </div>
+            <i className={cn('icon', { pause: isPlaying, play: !isPlaying })} onClick={onTogglePlay}/>
           </div>
+        </div>
       }
     </React.Fragment>
   );

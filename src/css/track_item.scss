@@ -6,14 +6,11 @@
     }
   }
   &:hover {
-    :not(.disabled).icon::before {
-      cursor: pointer;
+    :not(.disabled):not(.play):not(.pause).icon::before {
       content: '\f04b';
     }
-  }
-  &.isSelected {
     .icon::before {
-      content: '\f04b';
+      cursor: pointer;
     }
   }
 }

@@ -24,6 +24,15 @@ class App extends React.Component {
     this.setState({ trackSelected: track });
   };
 
+  loadFirstTrack = () => {
+    this.setState({ trackSelected: this.state.tracks[0] });
+  };
+
+  loadNextTrack = () => {
+    const currentIndexTrack = this.state.tracks.findIndex((track) => (track === this.state.trackSelected));
+    this.setState({ trackSelected: this.state.tracks[currentIndexTrack + 1] })
+  };
+
   render() {
     return (
       <div className='ui container'>
@@ -32,6 +41,8 @@ class App extends React.Component {
           tracks={this.state.tracks}
           trackSelected={this.state.trackSelected}
           onTrackClick={this.onTrackClick}
+          loadFirstTrack={this.loadFirstTrack}
+          loadNextTrack={this.loadNextTrack}
         />
       </div>
     )
