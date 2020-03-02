@@ -36,7 +36,6 @@ class App extends React.Component {
   render() {
     return (
       <div className='ui container'>
-        <SearchBar onFormSubmit={this.onFormSubmit}/>
         <AudioPlayer
           tracks={this.state.tracks}
           trackSelected={this.state.trackSelected}
@@ -44,6 +43,7 @@ class App extends React.Component {
           loadFirstTrack={this.loadFirstTrack}
           loadNextTrack={this.loadNextTrack}
         />
+        <SearchBar/>
       </div>
     )
   }

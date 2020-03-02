@@ -1,24 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { changeTerm } from '../actions';
 
 class SearchBar extends React.Component {
-   state = { term: '' };
-
-   onChangeTerm = (event) => {
-     this.setState( { term: event.target.value });
-   };
-
-   onFormSubmit = (event) => {
-     event.preventDefault();
-     this.props.onFormSubmit(this.state.term);
-   };
-
   render() {
+    const { term, changeTerm } = this.props;
     return (
         <div className='search-bar ui segment'>
-          <form className='ui form' onSubmit={this.onFormSubmit}>
+          <form className='ui form'>
             <div className='field'>
               <label>Music Search</label>
-              <input type='text' value={this.state.term} onChange={this.onChangeTerm} />
+              <input type='text' value={term} onChange={(e) => { changeTerm(e.target.value) }} />
             </div>
           </form>
         </div>
@@ -26,4 +18,10 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+const mapStateToProps = (state) => {
+  return {
+    term: state.term
+  }
+};
+
+export default connect(mapStateToProps, { changeTerm })(SearchBar);
