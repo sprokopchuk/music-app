@@ -1,6 +1,7 @@
 // action types
 export const CHANGE_TERM = 'CHANGE_TERM';
 export const SUBMIT_FORM = 'SUBMIT_FORM';
+export const LOAD_TRACKS = 'LOAD_TRACKS';
 export const SELECT_TRACK = 'SELECT_TRACK';
 export const TRACK_LIST = 'TRACK_LIST';
 export const TOGGLE_PLAY = 'TOGGLE_PLAY';
@@ -14,10 +15,16 @@ export const changeTerm = (term) => {
 };
 
 export const submitForm = (term) => {
-  // Call an API
   return {
     type: SUBMIT_FORM,
-    payload: 'data'
+    payload: term
+  }
+};
+
+export const loadTracks = (tracks) => {
+  return {
+    type: LOAD_TRACKS,
+    payload: tracks
   }
 };
 
@@ -28,10 +35,10 @@ export const selectTrack = (track) => {
   }
 };
 
-export const trackList = (list) => {
+export const trackList = (tracks) => {
   return {
     type: TRACK_LIST,
-    payload: list
+    payload: tracks
   }
 };
 

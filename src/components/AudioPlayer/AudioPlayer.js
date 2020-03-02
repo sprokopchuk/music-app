@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import TrackList from './TrackList';
 import PlayingBar from './PlayingBar';
 
@@ -59,4 +60,10 @@ class AudioPlayer extends React.Component {
   }
 }
 
-export default AudioPlayer;
+const mapStateToProps = (state) => {
+  return {
+    tracks: state.tracks
+  }
+};
+
+export default connect(mapStateToProps, {})(AudioPlayer);
