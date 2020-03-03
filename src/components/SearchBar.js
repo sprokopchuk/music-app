@@ -5,7 +5,7 @@ import { changeTerm, submitForm } from '../actions';
 class SearchBar extends React.Component {
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.submitForm(this.props.term);
+    this.props.submitForm();
   };
 
   render() {
