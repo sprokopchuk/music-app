@@ -1,9 +1,12 @@
 import spotify from '../api/spotify';
-import { put, call } from 'redux-saga/effects';
-import { TRACK_LIST } from '../actions';
+import { put, takeEvery, select } from 'redux-saga/effects';
+import { TRACK_LIST, SUBMIT_FORM } from '../actions';
 
-function* fetchTracks(term) {
-  yield spotify.get('/search', {
+const getTerm = state => state.term;
+
+function* fetchTracks() {
+  const term = yield select(getTerm);
+  const tracks = yield spotify.get('/search', {
     params: {
       q: term,
       type: 'track'
@@ -11,12 +14,14 @@ function* fetchTracks(term) {
   }).then((response) => {
     if (response.status === 200) {
       return response.data.tracks.items
+    } else {
+      return [];
     }
   });
+  yield put({ type: TRACK_LIST, tracks: tracks });
 }
 
-export function* submitForm(term) {
-  const tracks = yield call(fetchTracks, term);
-  yield put({ type: TRACK_LIST, payload: tracks });
+export function* submitForm() {
+  yield takeEvery(SUBMIT_FORM, fetchTracks);
 }
 

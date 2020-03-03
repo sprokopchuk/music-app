@@ -1,17 +1,17 @@
-import { CHANGE_TERM, SUBMIT_FORM } from '../actions';
+import { CHANGE_TERM, TRACK_LIST } from '../actions';
 import { combineReducers } from 'redux';
 
 const changeTermReducer = (state = '', action) => {
   if(action.type === CHANGE_TERM) {
-    return action.payload;
+    return action.term;
   }
 
   return state;
 };
 
-const formSubmitReducer = (state = '', action) => {
-  if(action.type === SUBMIT_FORM) {
-    return action.payload;
+const trackListReducer = (state = [], action) => {
+  if(action.type === TRACK_LIST) {
+    return action.tracks;
   }
 
   return state;
@@ -19,7 +19,7 @@ const formSubmitReducer = (state = '', action) => {
 
 export default combineReducers({
   term: changeTermReducer,
-  tracks: formSubmitReducer
+  tracks: trackListReducer
 })
 
 
