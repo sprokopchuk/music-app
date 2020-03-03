@@ -4,21 +4,22 @@ import '../../css/track_item.scss'
 
 class TrackItem extends React.Component {
   render () {
-    const { track, trackSelected, isPlaying, onTogglePlay, onTrackClick } = this.props;
-    const isSelected = track.preview_url && trackSelected === track;
+    // const { track, trackSelected, isPlaying, onTogglePlay, onTrackClick } = this.props;
+    // const isSelected = track.preview_url && trackSelected === track;
 
+    const { track } = this.props;
     return (
       <div className='item track-item'>
         <i
           className={cn('icon', {
             disabled: !track.preview_url,
-            pause: isPlaying && isSelected,
-            play: !isPlaying && isSelected
+            // pause: isPlaying && isSelected,
+            // play: !isPlaying && isSelected
           })}
-          onClick={() => {
-            onTrackClick(track);
-            onTogglePlay();
-          }}
+          // onClick={() => {
+          //   onTrackClick(track);
+          //   onTogglePlay();
+          // }}
         />
         <div className='content'>
           <div className='header'>{track.name}</div>

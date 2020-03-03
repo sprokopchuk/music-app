@@ -36,7 +36,7 @@ class App extends React.Component {
     return (
       <div className='ui container'>
         <SearchBar/>
-        {/*<AudioPlayer*/}
+        <AudioPlayer/>
         {/*  tracks={this.state.tracks}*/}
         {/*  trackSelected={this.state.trackSelected}*/}
         {/*  onTrackClick={this.onTrackClick}*/}

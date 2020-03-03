@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { isPresent } from '../collection';
 import TrackItem from './TrackItem';
 
@@ -13,10 +14,10 @@ const TrackList = ({ tracks, onTrackClick, trackSelected, onTogglePlay, isPlayin
                 <TrackItem
                   track={track}
                   key={track.id}
-                  onTrackClick={onTrackClick}
-                  trackSelected={trackSelected}
-                  onTogglePlay={onTogglePlay}
-                  isPlaying={isPlaying}
+                  // onTrackClick={onTrackClick}
+                  // trackSelected={trackSelected}
+                  // onTogglePlay={onTogglePlay}
+                  // isPlaying={isPlaying}
                 />))
               }
             </div>
@@ -26,4 +27,10 @@ const TrackList = ({ tracks, onTrackClick, trackSelected, onTogglePlay, isPlayin
   )
 };
 
-export default TrackList;
+const mapStateToProps = (state) => {
+  return {
+    tracks: state.tracks
+  }
+};
+
+export default  connect(mapStateToProps)(TrackList);
