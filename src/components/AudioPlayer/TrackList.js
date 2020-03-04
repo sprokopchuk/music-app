@@ -1,36 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { selectTrack } from '../../actions';
 import { isPresent } from '../collection';
 import TrackItem from './TrackItem';
 
-const TrackList = ({ tracks, onTrackClick, trackSelected, onTogglePlay, isPlaying }) => {
-  return (
-    <React.Fragment>
-      {
-        isPresent(tracks) &&
-          <div className='ui segment'>
-            <div className='ui relaxed divided list'>
-              { tracks.map(track => (
-                <TrackItem
-                  track={track}
-                  key={track.id}
-                  // onTrackClick={onTrackClick}
-                  // trackSelected={trackSelected}
-                  // onTogglePlay={onTogglePlay}
-                  // isPlaying={isPlaying}
-                />))
-              }
+class TrackList extends React.Component {
+  onTrackClick = (track) => {
+    if(!track.preview_url) return;
+    this.props.selectTrack(track);
+  };
+
+  render (){
+    const { tracks, trackSelected } = this.props;
+
+    return (
+      <React.Fragment>
+        {
+          isPresent(tracks) &&
+            <div className='ui segment'>
+              <div className='ui relaxed divided list'>
+                { tracks.map(track => (
+                  <TrackItem
+                    track={track}
+                    key={track.id}
+                    isSelected={track.preview_url && trackSelected === track}
+                    onTrackClick={() => this.onTrackClick(track)}
+                    // onTogglePlay={onTogglePlay}
+                    // isPlaying={isPlaying}
+                  />))
+                }
+              </div>
             </div>
-          </div>
-      }
-    </React.Fragment>
-  )
-};
+        }
+      </React.Fragment>
+    )
+  };
+}
 
 const mapStateToProps = (state) => {
   return {
-    tracks: state.tracks
+    tracks: state.tracks,
+    trackSelected: state.trackSelected
   }
 };
 
-export default  connect(mapStateToProps)(TrackList);
+export default connect(mapStateToProps, { selectTrack })(TrackList);

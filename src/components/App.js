@@ -3,26 +3,6 @@ import SearchBar from './SearchBar';
 import AudioPlayer from './AudioPlayer';
 
 class App extends React.Component {
-  // state = { tracks: [], trackSelected: null };
-  //
-  // onFormSubmit = (term) => {
-  //   spotify.get('/search', {
-  //     params: {
-  //       q: term,
-  //       type: 'track'
-  //     }
-  //   }).then((response) => {
-  //     if (response.status === 200) {
-  //       this.setState( { tracks: response.data.tracks.items })
-  //     }
-  //   });
-  // };
-
-  // onTrackClick = (track) => {
-  //   if(!track.preview_url) return;
-  //   this.setState({ trackSelected: track });
-  // };
-  //
   // loadFirstTrack = () => {
   //   this.setState({ trackSelected: this.state.tracks[0] });
   // };

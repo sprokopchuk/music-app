@@ -1,4 +1,4 @@
-import { CHANGE_TERM, LOAD_TRACKS } from '../actions';
+import { CHANGE_TERM, LOAD_TRACKS, SELECT_TRACK } from '../actions';
 import { combineReducers } from 'redux';
 
 const changeTermReducer = (state = '', action) => {
@@ -17,9 +17,18 @@ const trackListReducer = (state = [], action) => {
   return state;
 };
 
+const selectTrackReducer = (state = null, action) => {
+  if(action.type === SELECT_TRACK) {
+    return action.track;
+  }
+
+  return state;
+};
+
 export default combineReducers({
   term: changeTermReducer,
-  tracks: trackListReducer
+  tracks: trackListReducer,
+  trackSelected: selectTrackReducer
 })
 
 

@@ -9,7 +9,7 @@ export const TOGGLE_PLAY = 'TOGGLE_PLAY';
 export const changeTerm = (term) => {
   return {
     type: CHANGE_TERM,
-    term: term
+    term
   }
 };
 
@@ -22,14 +22,14 @@ export const submitForm = () => {
 export const loadTracks = (tracks) => {
   return {
     type: LOAD_TRACKS,
-    tracks: tracks
+    tracks
   }
 };
 
 export const selectTrack = (track) => {
   return {
     type: SELECT_TRACK,
-    payload: track
+    track
   }
 };
 

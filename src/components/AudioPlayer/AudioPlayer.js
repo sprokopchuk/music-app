@@ -39,9 +39,6 @@ class AudioPlayer extends React.Component {
     return (
       <React.Fragment>
         <TrackList
-          tracks={this.props.tracks}
-          // onTrackClick={this.props.onTrackClick}
-          // trackSelected={this.props.trackSelected}
           // onTogglePlay={this.onTogglePlay}
           // isPlaying={this.state.play}
         />

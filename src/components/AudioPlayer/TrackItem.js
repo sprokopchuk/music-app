@@ -5,9 +5,8 @@ import '../../css/track_item.scss'
 class TrackItem extends React.Component {
   render () {
     // const { track, trackSelected, isPlaying, onTogglePlay, onTrackClick } = this.props;
-    // const isSelected = track.preview_url && trackSelected === track;
 
-    const { track } = this.props;
+    const { track, onTrackClick } = this.props;
     return (
       <div className='item track-item'>
         <i
@@ -16,10 +15,7 @@ class TrackItem extends React.Component {
             // pause: isPlaying && isSelected,
             // play: !isPlaying && isSelected
           })}
-          // onClick={() => {
-          //   onTrackClick(track);
-          //   onTogglePlay();
-          // }}
+          onClick={onTrackClick}
         />
         <div className='content'>
           <div className='header'>{track.name}</div>
