@@ -2,25 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TrackList from './TrackList';
 import PlayingBar from './PlayingBar';
+import { togglePlay } from '../../actions';
 
 class AudioPlayer extends React.Component {
   // state = { play: false, duration: 0 };
-  // audio = React.createRef();
+  audio = React.createRef();
   //
-  // onTogglePlay = () => {
-  //   if(!this.props.trackSelected) {
-  //     this.props.loadFirstTrack();
-  //     return;
-  //   }
-  //
-  //   if (this.state.play) {
-  //     this.audio.current.pause();
-  //     this.setState({ play: false })
-  //   } else {
-  //     this.audio.current.play();
-  //     this.setState({ play: true });
-  //   }
-  // };
+  onTogglePlay = () => {
+    const { trackSelected, isPlaying, togglePlay } = this.props;
+
+    // if(!trackSelected) {
+    //   this.props.loadFirstTrack();
+    //   return;
+    // }
+
+    if (isPlaying) {
+      this.audio.current.pause();
+      togglePlay();
+    } else {
+      this.audio.current.play();
+      togglePlay();
+    }
+  };
   //
   // onPlay = () => {
   //   this.setState({ play: true });
@@ -39,7 +42,7 @@ class AudioPlayer extends React.Component {
     return (
       <React.Fragment>
         <TrackList
-          // onTogglePlay={this.onTogglePlay}
+          onTogglePlay={this.onTogglePlay}
           // isPlaying={this.state.play}
         />
         {/*<PlayingBar*/}
@@ -59,8 +62,10 @@ class AudioPlayer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    tracks: state.tracks
+    tracks: state.tracks,
+    trackSelected: state.trackSelected,
+    isPlaying: state.isPlaying
   }
 };
 
-export default connect(mapStateToProps, {})(AudioPlayer);
+export default connect(mapStateToProps, { togglePlay })(AudioPlayer);

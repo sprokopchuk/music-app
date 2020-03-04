@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectTrack } from '../../actions';
+import { selectTrack, togglePlay } from '../../actions';
 import { isPresent } from '../collection';
 import TrackItem from './TrackItem';
 
@@ -8,10 +8,11 @@ class TrackList extends React.Component {
   onTrackClick = (track) => {
     if(!track.preview_url) return;
     this.props.selectTrack(track);
+    this.props.togglePlay();
   };
 
   render (){
-    const { tracks, trackSelected } = this.props;
+    const { tracks, trackSelected, isPlaying } = this.props;
 
     return (
       <React.Fragment>
@@ -25,8 +26,7 @@ class TrackList extends React.Component {
                     key={track.id}
                     isSelected={track.preview_url && trackSelected === track}
                     onTrackClick={() => this.onTrackClick(track)}
-                    // onTogglePlay={onTogglePlay}
-                    // isPlaying={isPlaying}
+                    isPlaying={isPlaying}
                   />))
                 }
               </div>
@@ -40,8 +40,9 @@ class TrackList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     tracks: state.tracks,
-    trackSelected: state.trackSelected
+    trackSelected: state.trackSelected,
+    isPlaying: state.isPlaying
   }
 };
 
-export default connect(mapStateToProps, { selectTrack })(TrackList);
+export default connect(mapStateToProps, { selectTrack, togglePlay })(TrackList);

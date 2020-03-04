@@ -34,10 +34,9 @@ export const selectTrack = (track) => {
 };
 
 
-export const togglePlay = (play) => {
+export const togglePlay = () => {
   return {
-    type: TOGGLE_PLAY,
-    payload: play
+    type: TOGGLE_PLAY
   }
 };
 

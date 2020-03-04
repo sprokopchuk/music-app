@@ -1,4 +1,4 @@
-import { CHANGE_TERM, LOAD_TRACKS, SELECT_TRACK } from '../actions';
+import { CHANGE_TERM, LOAD_TRACKS, SELECT_TRACK, TOGGLE_PLAY } from '../actions';
 import { combineReducers } from 'redux';
 
 const changeTermReducer = (state = '', action) => {
@@ -25,10 +25,19 @@ const selectTrackReducer = (state = null, action) => {
   return state;
 };
 
+const togglePlayReducer = (state = false, action) => {
+  if(action.type === TOGGLE_PLAY) {
+    return !state;
+  }
+
+  return state;
+};
+
 export default combineReducers({
   term: changeTermReducer,
   tracks: trackListReducer,
-  trackSelected: selectTrackReducer
+  trackSelected: selectTrackReducer,
+  isPlaying: togglePlayReducer
 })
 
 
