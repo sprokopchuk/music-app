@@ -2,7 +2,7 @@
 export const CHANGE_TERM = 'CHANGE_TERM';
 export const SUBMIT_FORM = 'SUBMIT_FORM';
 export const SELECT_TRACK = 'SELECT_TRACK';
-export const TRACK_LIST = 'TRACK_LIST';
+export const LOAD_TRACKS = 'LOAD_TRACKS';
 export const TOGGLE_PLAY = 'TOGGLE_PLAY';
 
 // action creators
@@ -19,6 +19,13 @@ export const submitForm = () => {
   }
 };
 
+export const loadTracks = (tracks) => {
+  return {
+    type: LOAD_TRACKS,
+    tracks: tracks
+  }
+};
+
 export const selectTrack = (track) => {
   return {
     type: SELECT_TRACK,
@@ -26,12 +33,6 @@ export const selectTrack = (track) => {
   }
 };
 
-export const trackList = (tracks) => {
-  return {
-    type: TRACK_LIST,
-    tracks: tracks
-  }
-};
 
 export const togglePlay = (play) => {
   return {

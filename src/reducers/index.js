@@ -1,4 +1,4 @@
-import { CHANGE_TERM, TRACK_LIST } from '../actions';
+import { CHANGE_TERM, LOAD_TRACKS } from '../actions';
 import { combineReducers } from 'redux';
 
 const changeTermReducer = (state = '', action) => {
@@ -10,7 +10,7 @@ const changeTermReducer = (state = '', action) => {
 };
 
 const trackListReducer = (state = [], action) => {
-  if(action.type === TRACK_LIST) {
+  if(action.type === LOAD_TRACKS) {
     return action.tracks;
   }
 

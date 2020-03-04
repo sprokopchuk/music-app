@@ -1,6 +1,6 @@
 import spotify from '../api/spotify';
 import { put, takeEvery, select } from 'redux-saga/effects';
-import { TRACK_LIST, SUBMIT_FORM } from '../actions';
+import { LOAD_TRACKS, SUBMIT_FORM } from '../actions';
 
 const getTerm = state => state.term;
 
@@ -18,7 +18,7 @@ function* fetchTracks() {
       return [];
     }
   });
-  yield put({ type: TRACK_LIST, tracks: tracks });
+  yield put({ type: LOAD_TRACKS, tracks: tracks });
 }
 
 export function* submitForm() {
