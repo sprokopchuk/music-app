@@ -41,20 +41,18 @@ class AudioPlayer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <TrackList
-          onTogglePlay={this.onTogglePlay}
-          // isPlaying={this.state.play}
-        />
-        {/*<PlayingBar*/}
-        {/*  source={this.props.trackSelected && this.props.trackSelected.preview_url}*/}
-        {/*  onTogglePlay={this.onTogglePlay}*/}
-        {/*  onEnded={this.onEnded}*/}
-        {/*  onTimeUpdate={this.onTimeUpdate}*/}
-        {/*  onPlay={this.onPlay}*/}
-        {/*  duration={this.state.duration}*/}
-        {/*  isPlaying={this.state.play}*/}
-        {/*  audioRef={this.audio}*/}
-        {/*/>*/}
+        <TrackList onTogglePlay={this.onTogglePlay}/>
+        { this.props.trackSelected &&
+          <PlayingBar
+            source={this.props.trackSelected && this.props.trackSelected.preview_url}
+            onTogglePlay={this.onTogglePlay}
+            onEnded={this.onEnded}
+            // onTimeUpdate={this.onTimeUpdate}
+            duration={this.props.duration}
+            isPlaying={this.props.isPlaying}
+            audioRef={this.audio}
+          />
+        }
       </React.Fragment>
     )
   }
