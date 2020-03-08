@@ -2,7 +2,7 @@ import React from 'react';
 import '../../css/playing_bar.scss';
 import cn from "classnames";
 
-const PlayingBar = ({ source, duration, onPlay, onTimeUpdate, onEnded, onTogglePlay, audioRef, isPlaying }) => {
+const PlayingBar = ({ source, duration, onTimeUpdate, onEnded, onTogglePlay, audioRef, isPlaying }) => {
   return (
     <React.Fragment>
       {
@@ -13,10 +13,8 @@ const PlayingBar = ({ source, duration, onPlay, onTimeUpdate, onEnded, onToggleP
               <audio
                 ref={audioRef}
                 src={source}
-                onPlay={onPlay}
                 onTimeUpdate={onTimeUpdate}
                 onEnded={onEnded}
-                autoPlay
               />
             </div>
             <i className={cn('icon', { pause: isPlaying, play: !isPlaying })} onClick={onTogglePlay}/>

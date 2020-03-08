@@ -16,17 +16,17 @@ class App extends React.Component {
     return (
       <div className='ui container'>
         <SearchBar/>
-        <AudioPlayer/>
-        {/*  tracks={this.state.tracks}*/}
-        {/*  trackSelected={this.state.trackSelected}*/}
-        {/*  onTrackClick={this.onTrackClick}*/}
-        {/*  loadFirstTrack={this.loadFirstTrack}*/}
-        {/*  loadNextTrack={this.loadNextTrack}*/}
-        {/*/>*/}
       </div>
     )
   }
 
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    trackSelected: state.trackSelected,
+    tracks: state.tracks
+  }
+};
+
+export default connect(mapStateToProps, { selectTrack })(App);

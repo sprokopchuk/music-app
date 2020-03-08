@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectTrack, togglePlay } from '../../actions';
+import { selectTrack } from '../../actions';
 import { isPresent } from '../collection';
 import TrackItem from './TrackItem';
 
 class TrackList extends React.Component {
-  onTrackClick = (track) => {
-    if(!track.preview_url) return;
-    this.props.selectTrack(track);
-    this.props.togglePlay();
-  };
+  onTrackClick(track) {
+    const { selectTrack } = this.props;
+    selectTrack(track)
+  }
 
   render (){
     const { tracks, trackSelected, isPlaying } = this.props;
@@ -25,7 +24,7 @@ class TrackList extends React.Component {
                     track={track}
                     key={track.id}
                     isSelected={track.preview_url && trackSelected === track}
-                    onTrackClick={() => this.onTrackClick(track)}
+                    onTrackClick={() => this.onTrackClick(track) }
                     isPlaying={isPlaying}
                   />))
                 }
@@ -45,4 +44,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { selectTrack, togglePlay })(TrackList);
+export default connect(mapStateToProps, { selectTrack })(TrackList);
