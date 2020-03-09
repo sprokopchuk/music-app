@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectTrack } from '../../actions';
-import { isPresent } from '../collection';
+import { selectTrack, playTrack, pauseTrack } from '../../actions';
+import { isPresent } from '../../utils/collection';
 import TrackItem from './TrackItem';
 
 class TrackList extends React.Component {
   onTrackClick(track) {
-    const { selectTrack } = this.props;
-    selectTrack(track)
+    this.props.selectTrack(track);
+    const { playTrack, pauseTrack, isPlaying } = this.props;
+    isPlaying ? pauseTrack() : playTrack();
   }
 
   render (){
     const { tracks, trackSelected, isPlaying } = this.props;
-
     return (
       <React.Fragment>
         {
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { selectTrack })(TrackList);
+export default connect(mapStateToProps, { selectTrack, playTrack, pauseTrack })(TrackList);

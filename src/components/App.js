@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SearchBar from './SearchBar';
 import AudioPlayer from './AudioPlayer';
+import { selectTrack } from '../actions';
 
 class App extends React.Component {
   // loadFirstTrack = () => {
