@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import cn from 'classnames';
 import '../../css/playing_bar.scss';
-import { playTrack, pauseTrack, updateDuration } from '../../actions';
+import { playTrack, pauseTrack, updateDuration, playNextTrack } from '../../actions';
 
 const sourceSelector = createSelector(state => state.trackSelected,
                                      trackSelected => trackSelected.preview_url);
@@ -40,6 +40,10 @@ class PlayingBar extends React.Component {
     this.props.updateDuration(duration);
   };
 
+  onEnded = () => {
+    this.props.playNextTrack();
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -52,6 +56,7 @@ class PlayingBar extends React.Component {
                   ref={this.audio}
                   src={this.props.source}
                   onTimeUpdate={this.onTimeUpdate}
+                  onEnded={this.onEnded}
                 />
               </div>
               <i
@@ -74,4 +79,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { playTrack, pauseTrack, updateDuration })(PlayingBar);
+export default connect(mapStateToProps, { playTrack, pauseTrack, updateDuration, playNextTrack })(PlayingBar);

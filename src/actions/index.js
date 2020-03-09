@@ -6,6 +6,7 @@ export const LOAD_TRACKS = 'LOAD_TRACKS';
 export const PLAY_TRACK = 'PLAY_TRACK';
 export const PAUSE_TRACK = 'PAUSE_TRACK';
 export const UPDATE_DURATION = 'UPDATE_DURATION';
+export const PLAY_NEXT_TRACK = 'PLAY_NEXT_TRACK';
 
 // action creators
 export const changeTerm = (term) => {
@@ -53,6 +54,12 @@ export const updateDuration = (duration) => {
   return {
     type: UPDATE_DURATION,
     duration
+  }
+};
+
+export const playNextTrack = () => {
+  return {
+    type: PLAY_NEXT_TRACK
   }
 };
 

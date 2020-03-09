@@ -4,10 +4,6 @@ import TrackList from './TrackList';
 import PlayingBar from './PlayingBar';
 
 class AudioPlayer extends React.Component {
-  // onEnded = () => {
-  //   this.props.loadNextTrack();
-  // };
-
   render() {
     return (
       <React.Fragment>
