@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import cn from 'classnames';
 import '../../css/playing_bar.scss';
-import { playTrack, pauseTrack, updateDuration, playNextTrack } from '../../actions';
+import { playTrack, pauseTrack, updateDuration, playNextTrack, selectTrack } from '../../actions';
 
 const sourceSelector = createSelector(state => state.trackSelected,
                                      trackSelected => trackSelected.preview_url);
@@ -11,7 +11,11 @@ const sourceSelector = createSelector(state => state.trackSelected,
 class PlayingBar extends React.Component {
   audio = React.createRef();
 
-  toggleAudio() {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(prevProps.source !== this.props.source) {
+      this.props.updateDuration(0);
+    }
+
     if(this.props.isPlaying) {
       this.audio.current.play();
     } else {
@@ -19,20 +23,13 @@ class PlayingBar extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if(prevProps.source !== this.props.source) {
-      this.props.updateDuration(0);
-    }
-    this.toggleAudio();
-  }
-
   componentDidMount() {
-    this.toggleAudio()
+    this.audio.current.play();
   }
 
   onTogglePlay = () => {
     const { playTrack, pauseTrack, isPlaying } = this.props;
-    isPlaying ? pauseTrack() : playTrack()
+    isPlaying ? pauseTrack() : playTrack();
   };
 
   onTimeUpdate = () => {
@@ -41,7 +38,7 @@ class PlayingBar extends React.Component {
   };
 
   onEnded = () => {
-    this.props.playNextTrack();
+    this.props.loadNextTrack();
   };
 
   render() {
@@ -79,4 +76,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { playTrack, pauseTrack, updateDuration, playNextTrack })(PlayingBar);
+export default connect(mapStateToProps, { playTrack, pauseTrack, updateDuration, playNextTrack, selectTrack })(PlayingBar);
