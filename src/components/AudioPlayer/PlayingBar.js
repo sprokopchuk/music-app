@@ -33,7 +33,7 @@ class PlayingBar extends React.Component {
   };
 
   onTimeUpdate = () => {
-    const duration = Math.floor(this.audio.current.currentTime) / Math.floor(this.audio.current.duration) * 100;
+    const duration = this.audio.current.currentTime / this.audio.current.duration * 100;
     this.props.updateDuration(duration);
   };
 
