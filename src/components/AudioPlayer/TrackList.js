@@ -6,6 +6,7 @@ import TrackItem from './TrackItem';
 
 class TrackList extends React.Component {
   onTrackClick(track) {
+    if(!track.preview_url) return;
     this.props.selectTrack(track);
     const { playTrack, pauseTrack, isPlaying, trackSelected } = this.props;
     if(trackSelected === track) {
