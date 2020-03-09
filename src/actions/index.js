@@ -5,6 +5,7 @@ export const SELECT_TRACK = 'SELECT_TRACK';
 export const LOAD_TRACKS = 'LOAD_TRACKS';
 export const PLAY_TRACK = 'PLAY_TRACK';
 export const PAUSE_TRACK = 'PAUSE_TRACK';
+export const UPDATE_DURATION = 'UPDATE_DURATION';
 
 // action creators
 export const changeTerm = (term) => {
@@ -45,6 +46,13 @@ export const pauseTrack = () => {
   return {
     type: PAUSE_TRACK,
     payload: false
+  }
+};
+
+export const updateDuration = (duration) => {
+  return {
+    type: UPDATE_DURATION,
+    duration
   }
 };
 

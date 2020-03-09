@@ -1,4 +1,11 @@
-import { CHANGE_TERM, LOAD_TRACKS, PAUSE_TRACK, PLAY_TRACK, SELECT_TRACK, TOGGLE_PLAY } from '../actions';
+import {
+  CHANGE_TERM,
+  LOAD_TRACKS,
+  PAUSE_TRACK,
+  PLAY_TRACK,
+  SELECT_TRACK,
+  UPDATE_DURATION,
+} from '../actions';
 import { combineReducers } from 'redux';
 
 const changeTermReducer = (state = '', action) => {
@@ -36,11 +43,20 @@ const togglePlayReducer = (state = false, action) => {
   }
 };
 
+const updateDurationReducer = (state = 0, action) => {
+  if(action.type === UPDATE_DURATION) {
+    return action.duration;
+  }
+
+  return state;
+};
+
 export default combineReducers({
   term: changeTermReducer,
   tracks: trackListReducer,
   trackSelected: selectTrackReducer,
   isPlaying: togglePlayReducer,
+  duration: updateDurationReducer
 })
 
 

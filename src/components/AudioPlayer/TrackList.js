@@ -7,8 +7,12 @@ import TrackItem from './TrackItem';
 class TrackList extends React.Component {
   onTrackClick(track) {
     this.props.selectTrack(track);
-    const { playTrack, pauseTrack, isPlaying } = this.props;
-    isPlaying ? pauseTrack() : playTrack();
+    const { playTrack, pauseTrack, isPlaying, trackSelected } = this.props;
+    if(trackSelected === track) {
+      isPlaying ? pauseTrack() : playTrack();
+    } else {
+      playTrack();
+    }
   }
 
   render (){
