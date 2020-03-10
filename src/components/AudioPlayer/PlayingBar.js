@@ -9,32 +9,16 @@ const sourceSelector = createSelector(state => state.trackSelected,
                                      trackSelected => trackSelected.preview_url);
 
 class PlayingBar extends React.Component {
-  audio = React.createRef();
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if(prevProps.source !== this.props.source) {
       this.props.updateDuration(0);
     }
-
-    if(this.props.isPlaying) {
-      this.audio.current.play();
-    } else {
-      this.audio.current.pause();
-    }
-  }
-
-  componentDidMount() {
-    this.audio.current.play();
   }
 
   onTogglePlay = () => {
     const { playTrack, pauseTrack, isPlaying } = this.props;
     isPlaying ? pauseTrack() : playTrack();
-  };
-
-  onTimeUpdate = () => {
-    const duration = this.audio.current.currentTime / this.audio.current.duration * 100;
-    this.props.updateDuration(duration);
   };
 
   onEnded = () => {
