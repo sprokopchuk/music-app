@@ -12,7 +12,8 @@ const loadNextTrack = (store) => {
   const { tracks, trackSelected } = store.getState();
 
   const currentIndexTrack = tracks.findIndex((track) => (track === trackSelected));
-  if(currentIndexTrack >= 0) {
+
+  if(currentIndexTrack < tracks.length - 1) {
     const track = tracks.find((track, index) => index > currentIndexTrack && track.preview_url);
     store.dispatch(selectTrack(track));
   } else {
