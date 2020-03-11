@@ -5,13 +5,6 @@ import '../../css/playing_bar.scss';
 import { playTrack, pauseTrack, updateDuration } from '../../actions';
 
 class PlayingBar extends React.Component {
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if(prevProps.source !== this.props.source) {
-      this.props.updateDuration(0);
-    }
-  }
-
   onTogglePlay = () => {
     const { playTrack, pauseTrack, isPlaying } = this.props;
     isPlaying ? pauseTrack() : playTrack();
