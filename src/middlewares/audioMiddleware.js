@@ -1,10 +1,31 @@
-import { PAUSE_TRACK, PLAY_TRACK, playNextTrack, updateDuration } from '../actions';
+import {
+  PAUSE_TRACK,
+  PLAY_NEXT_TRACK,
+  PLAY_TRACK,
+  playNextTrack,
+  updateDuration,
+  selectTrack,
+  playTrack
+} from '../actions';
+
+const loadNextTrack = (store) => {
+  const { tracks, trackSelected } = store.getState();
+
+  const currentIndexTrack = tracks.findIndex((track) => (track === trackSelected));
+  if(currentIndexTrack >= 0) {
+    const track = tracks.find((track, index) => index > currentIndexTrack && track.preview_url);
+    store.dispatch(selectTrack(track));
+  } else {
+    const track = tracks.find(track => track.preview_url);
+    store.dispatch(selectTrack(track));
+  }
+  store.dispatch(playTrack());
+};
 
 const audioMiddleware = store => next => {
   const audio = new Audio();
   audio.ontimeupdate = () => {
     const duration = audio.currentTime / audio.duration * 100;
-    console.log(duration);
     store.dispatch(updateDuration(duration));
   };
 
@@ -12,39 +33,26 @@ const audioMiddleware = store => next => {
     store.dispatch(playNextTrack());
   };
 
-
-  // Ensure we reflect the store's initial state
-  // const initialState = store.getState();
-  // if (initialState.isPlaying) musicPlayer.play();
-  // musicPlayer.seek(initialState.currentTime);
-
   return action => {
     switch (action.type) {
       case PLAY_TRACK:
         const { trackSelected } = store.getState();
-        console.log(trackSelected);
-        audio.src = trackSelected.preview_url;
+        if(audio.src !== trackSelected.preview_url) {
+          audio.src = trackSelected.preview_url
+        }
         audio.play();
         break;
       case PAUSE_TRACK:
         audio.pause();
         break;
+      case PLAY_NEXT_TRACK:
+        loadNextTrack(store);
+        break;
       default:
+        break;
     }
-    // if(trackSelected && trackSelected.preview_url) {
-    //
-    // }
 
-    // const { isPlaying: wasPlaying, currentTime: previousTime } = store.getState();
     next(action);
-    // const { isPlaying: isPlaying, currentTime: nextTime } = store.getState();
-
-    // Don't dispatch any actions for actions that originated from the player
-    // if (action.origin === audioOrigin) return;
-    //
-    // if (!wasPlaying && isPlaying) musicPlayer.play();
-    // if (wasPlaying && !isPlaying) musicPlayer.pause();
-    // if (previousTime !== nextTime) musicPlayer.seek(nextTime);
   };
 };
 

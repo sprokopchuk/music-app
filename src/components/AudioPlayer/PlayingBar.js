@@ -1,12 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 import cn from 'classnames';
 import '../../css/playing_bar.scss';
-import { playTrack, pauseTrack, updateDuration, playNextTrack, selectTrack } from '../../actions';
-
-const sourceSelector = createSelector(state => state.trackSelected,
-                                     trackSelected => trackSelected.preview_url);
+import { playTrack, pauseTrack, updateDuration } from '../../actions';
 
 class PlayingBar extends React.Component {
 
@@ -21,10 +17,6 @@ class PlayingBar extends React.Component {
     isPlaying ? pauseTrack() : playTrack();
   };
 
-  onEnded = () => {
-    this.props.loadNextTrack();
-  };
-
   render() {
     return (
       <React.Fragment>
@@ -33,12 +25,6 @@ class PlayingBar extends React.Component {
             <div className="ui bottom attached segment">
               <div className="ui top attached progress" >
                 <div className="bar" style={{width: `${this.props.duration}%`}} />
-                <audio
-                  ref={this.audio}
-                  src={this.props.source}
-                  onTimeUpdate={this.onTimeUpdate}
-                  onEnded={this.onEnded}
-                />
               </div>
               <i
                 className={cn('icon', { pause: this.props.isPlaying, play: !this.props.isPlaying })}
@@ -55,9 +41,8 @@ class PlayingBar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isPlaying: state.isPlaying,
-    source: sourceSelector(state),
     duration: state.duration
   }
 };
 
-export default connect(mapStateToProps, { playTrack, pauseTrack, updateDuration, playNextTrack, selectTrack })(PlayingBar);
+export default connect(mapStateToProps, { playTrack, pauseTrack, updateDuration })(PlayingBar);
