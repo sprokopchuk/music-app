@@ -9,8 +9,8 @@ import reducers from './reducers';
 import App from './components/App';
 
 const sagaMiddleware = createSagaMiddleware();
-const composeEnhancers = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const store = createStore(reducers, composeEnhancers(applyMiddleware(sagaMiddleware, audioMiddleware)))
+const composeEnhancers = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(sagaMiddleware, audioMiddleware)));
 
 sagaMiddleware.run(sagas);
 
