@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import '../../css/track_item.scss'
 
 const TrackItem = ({ track, onTrackClick, isPlaying, isSelected }) => {
@@ -19,6 +20,13 @@ const TrackItem = ({ track, onTrackClick, isPlaying, isSelected }) => {
       </div>
     </div>
   );
+};
+
+TrackItem.propTypes = {
+  track: PropTypes.object.isRequired,
+  onTrackClick: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool
 };
 
 export default TrackItem;

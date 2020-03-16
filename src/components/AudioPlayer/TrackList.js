@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { selectTrack, playTrack, pauseTrack } from '../../actions';
 import { isPresent } from '../../utils/collection';
 import TrackItem from './TrackItem';
@@ -40,6 +41,16 @@ class TrackList extends React.Component {
     )
   };
 }
+
+
+TrackList.propTypes = {
+  tracks: PropTypes.array.isRequired,
+  trackSelected: PropTypes.object,
+  isPlaying: PropTypes.bool.isRequired,
+  playTrack: PropTypes.func.isRequired,
+  pauseTrack: PropTypes.func.isRequired,
+  selectTrack: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => {
   return {

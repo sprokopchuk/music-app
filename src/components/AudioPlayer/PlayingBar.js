@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import '../../css/playing_bar.scss';
 import { playTrack, pauseTrack, updateDuration } from '../../actions';
 
@@ -30,6 +31,14 @@ class PlayingBar extends React.Component {
     );
   }
 }
+
+PlayingBar.propTypes = {
+  isPlaying: PropTypes.bool.isRequired,
+  duration: PropTypes.number.isRequired,
+  playTrack: PropTypes.func.isRequired,
+  pauseTrack: PropTypes.func.isRequired,
+  updateDuration: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => {
   return {

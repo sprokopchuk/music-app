@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { changeTerm, submitForm } from '../actions';
 
 class SearchBar extends React.Component {
@@ -22,6 +23,12 @@ class SearchBar extends React.Component {
     )
   }
 }
+
+SearchBar.propTypes = {
+  term: PropTypes.string,
+  changeTerm: PropTypes.func.isRequired,
+  submitForm: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => {
   return {
