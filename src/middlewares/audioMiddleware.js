@@ -24,7 +24,7 @@ const loadNextTrack = (store) => {
 };
 
 const audioMiddleware = store => next => {
-  const audio = new Audio();
+  const audio = new global.Audio();
   audio.ontimeupdate = () => {
     const duration = audio.currentTime / audio.duration * 100;
     store.dispatch(updateDuration(duration));
