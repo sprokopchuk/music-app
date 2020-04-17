@@ -5,6 +5,8 @@ import {
   PLAY_TRACK,
   SELECT_TRACK,
   UPDATE_DURATION,
+  SIGN_IN,
+  SIGN_OUT
 } from '../actions';
 import { combineReducers } from 'redux';
 
@@ -51,12 +53,24 @@ const updateDurationReducer = (state = 0, action) => {
   return state;
 };
 
+const authReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SIGN_IN:
+      return { ...state, isSignedIn: true };
+    case SIGN_OUT:
+      return { ...state, isSignedIn: false };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   term: changeTermReducer,
   tracks: trackListReducer,
   trackSelected: selectTrackReducer,
   isPlaying: togglePlayReducer,
-  duration: updateDurationReducer
+  duration: updateDurationReducer,
+  auth: authReducer
 })
 
 

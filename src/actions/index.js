@@ -7,6 +7,8 @@ export const PLAY_TRACK = 'PLAY_TRACK';
 export const PAUSE_TRACK = 'PAUSE_TRACK';
 export const UPDATE_DURATION = 'UPDATE_DURATION';
 export const PLAY_NEXT_TRACK = 'PLAY_NEXT_TRACK';
+export const SIGN_IN = 'SIGN_IN';
+export const SIGN_OUT = 'SIGN_OUT';
 
 // action creators
 export const changeTerm = (term) => {
@@ -60,6 +62,18 @@ export const updateDuration = (duration) => {
 export const playNextTrack = () => {
   return {
     type: PLAY_NEXT_TRACK
+  }
+};
+
+export const trySignIn = () => {
+  return {
+    type: SIGN_IN
+  }
+};
+
+export const trySignOut = () => {
+  return {
+    type: SIGN_OUT
   }
 };
 
