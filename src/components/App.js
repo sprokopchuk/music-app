@@ -6,12 +6,16 @@ import GoogleAuth from './GoogleAuth';
 const App = () => {
   return (
     <Fragment>
-      <div className='ui borderless main menu'>
-        <div className="right menu">
-          <GoogleAuth/>
+      <div className='ui secondary menu'>
+        <div className='ui container'>
+          <a className='active item'>Home</a>
+          <a className='item'>Playlist</a>
+          <div className="right menu">
+            <GoogleAuth/>
+          </div>
         </div>
       </div>
-      <div className='ui main container'>
+      <div className='ui container'>
         <SearchBar/>
         <AudioPlayer/>
       </div>
