@@ -5,8 +5,7 @@ import {
   PLAY_TRACK,
   SELECT_TRACK,
   UPDATE_DURATION,
-  SIGN_IN,
-  SIGN_OUT
+  CHANGE_AUTH
 } from '../actions';
 import { combineReducers } from 'redux';
 
@@ -54,14 +53,11 @@ const updateDurationReducer = (state = 0, action) => {
 };
 
 const authReducer = (state = {}, action) => {
-  switch (action.type) {
-    case SIGN_IN:
-      return { ...state, isSignedIn: true };
-    case SIGN_OUT:
-      return { ...state, isSignedIn: false };
-    default:
-      return state;
+  if (action.type === CHANGE_AUTH) {
+    return { ...state, isSignedIn: action.payload };
   }
+
+  return state;
 };
 
 export default combineReducers({

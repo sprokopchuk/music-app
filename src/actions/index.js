@@ -7,8 +7,9 @@ export const PLAY_TRACK = 'PLAY_TRACK';
 export const PAUSE_TRACK = 'PAUSE_TRACK';
 export const UPDATE_DURATION = 'UPDATE_DURATION';
 export const PLAY_NEXT_TRACK = 'PLAY_NEXT_TRACK';
-export const SIGN_IN = 'SIGN_IN';
-export const SIGN_OUT = 'SIGN_OUT';
+export const TRY_SIGN_IN = 'TRY_SIGN_IN';
+export const TRY_SIGN_OUT = 'TRY_SIGN_OUT';
+export const CHANGE_AUTH = 'CHANGE_AUTH';
 
 // action creators
 export const changeTerm = (term) => {
@@ -67,13 +68,20 @@ export const playNextTrack = () => {
 
 export const trySignIn = () => {
   return {
-    type: SIGN_IN
+    type: TRY_SIGN_IN
   }
 };
 
 export const trySignOut = () => {
   return {
-    type: SIGN_OUT
+    type: TRY_SIGN_OUT
+  }
+};
+
+export const changeAuthState = (isSignedIn) => {
+  return {
+    type: CHANGE_AUTH,
+    payload: isSignedIn
   }
 };
 

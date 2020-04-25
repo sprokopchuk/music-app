@@ -1,29 +1,40 @@
 import googleAuthSettings from '../api/googleAuth';
-import { takeEvery, all, call } from 'redux-saga/effects';
-import { SIGN_IN, SIGN_OUT } from '../actions';
-import { loadScript } from '../utils/scripts';
+import { takeEvery, all, call, put } from 'redux-saga/effects';
+import { TRY_SIGN_IN, TRY_SIGN_OUT, changeAuthState } from '../actions';
+import { loadScript } from './scripts';
 
-function *loadGoogleAuth() {
-  const initAuth2 = () => {
-    global.gapi.load('auth2', () => {
-      global.gapi.auth2.init({
-        client_id: googleAuthSettings.clientId,
-        scope: googleAuthSettings.scope
-      });
-    })
-  };
-  yield call(() => loadScript(googleAuthSettings.scriptUrl, initAuth2))
+const loadGoogleAuth2 = () => new Promise(resolve => {
+  global.gapi.load('auth2', resolve)
+});
+
+const initAuth2 = () => global.gapi.auth2.init({
+  client_id: googleAuthSettings.clientId,
+  scope: googleAuthSettings.scope
+});
+
+function* updateAuthState() {
+  const isSignedIn = global.gapi.auth2.getAuthInstance().isSignedIn.get();
+  yield put(changeAuthState(isSignedIn));
+}
+
+function *prepareGoogleAuth() {
+  yield call(loadScript, googleAuthSettings.scriptUrl);
+  yield call(loadGoogleAuth2);
+  yield call(initAuth2);
+  yield call(updateAuthState);
 }
 
 function* trySignIn() {
-  console.log('Trying sign in!');
+  yield call(global.gapi.auth2.getAuthInstance().signIn);
+  yield call(updateAuthState);
 }
 
 function* trySignOut() {
-  console.log('Trying sign out!');
+  yield call(global.gapi.auth2.getAuthInstance().signOut);
+  yield call(updateAuthState);
 }
 
 export default function* googleAuth() {
-  yield all([takeEvery(SIGN_IN, trySignIn), takeEvery(SIGN_OUT, trySignOut), loadGoogleAuth()]);
+  yield all([takeEvery(TRY_SIGN_IN, trySignIn), takeEvery(TRY_SIGN_OUT, trySignOut), prepareGoogleAuth()]);
 }
 
