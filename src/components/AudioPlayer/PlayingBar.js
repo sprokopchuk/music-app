@@ -40,7 +40,7 @@ PlayingBar.propTypes = {
   updateDuration: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isPlaying: state.isPlaying,
     duration: state.duration

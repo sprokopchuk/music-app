@@ -52,7 +52,7 @@ TrackList.propTypes = {
   selectTrack: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     tracks: state.tracks,
     trackSelected: state.trackSelected,
