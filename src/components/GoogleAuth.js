@@ -12,6 +12,9 @@ const GoogleButton = ({ text, onClick }) => {
 };
 
 const GoogleAuth = ({ isSignedIn, trySignIn, trySignOut }) => {
+  if (isSignedIn == null) {
+    return null;
+  }
   return (
     <Fragment>
       {isSignedIn
