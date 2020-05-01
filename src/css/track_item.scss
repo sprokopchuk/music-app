@@ -1,16 +1,13 @@
 .track-item {
-  .icon {
+  .music {
     min-width: 18px;
     &::before {
       content: '\f001';
     }
   }
   &:hover {
-    :not(.disabled):not(.play):not(.pause).icon::before {
+    :not(.disabled):not(.play):not(.pause).music::before {
       content: '\f04b';
-    }
-    .icon::before {
-      cursor: pointer;
     }
   }
 }

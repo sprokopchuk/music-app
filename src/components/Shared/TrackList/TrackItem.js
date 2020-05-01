@@ -7,7 +7,7 @@ const TrackItem = ({ track, onTrackClick, isPlaying, isSelected }) => {
   return (
     <div className='item track-item'>
       <i
-        className={cn('icon', {
+        className={cn('music icon link middle aligned', {
           disabled: !track.preview_url,
           pause: isPlaying && isSelected,
           play: !isPlaying && isSelected
@@ -16,8 +16,9 @@ const TrackItem = ({ track, onTrackClick, isPlaying, isSelected }) => {
       />
       <div className='content'>
         <div className='header'>{track.name}</div>
-        <div className='description'>{track.artists.map(artist => artist.name).join(', ')}</div>
+        {track.artists.map(artist => artist.name).join(', ')}
       </div>
+      <i className='star outline icon red link middle aligned'/>
     </div>
   );
 };
