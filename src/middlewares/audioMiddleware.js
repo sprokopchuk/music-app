@@ -1,7 +1,7 @@
 import {
   PAUSE_TRACK,
   PLAY_TRACK,
-  playNextTrack,
+  loadNextTrack,
   updateDuration,
 } from '../actions';
 
@@ -13,7 +13,7 @@ const audioMiddleware = store => next => {
   };
 
   audio.onended = () => {
-    store.dispatch(playNextTrack());
+    store.dispatch(loadNextTrack());
   };
 
   return action => {
