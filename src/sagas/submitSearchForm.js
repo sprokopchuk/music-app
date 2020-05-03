@@ -1,6 +1,6 @@
 import spotify from '../api/spotify';
 import { put, takeEvery, select } from 'redux-saga/effects';
-import { loadTracks, SUBMIT_FORM } from '../actions';
+import { loadTracks, SUBMIT_SEARCH_FORM } from '../actions';
 
 const getTerm = state => state.term;
 
@@ -22,6 +22,6 @@ function* fetchTracks() {
 }
 
 export default function* submitSearchForm() {
-  yield takeEvery(SUBMIT_FORM, fetchTracks);
+  yield takeEvery(SUBMIT_SEARCH_FORM, fetchTracks);
 }
 

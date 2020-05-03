@@ -1,6 +1,6 @@
 // action types
 export const CHANGE_TERM = 'CHANGE_TERM';
-export const SUBMIT_FORM = 'SUBMIT_FORM';
+export const SUBMIT_SEARCH_FORM = 'SUBMIT_SEARCH_FORM';
 export const SELECT_TRACK = 'SELECT_TRACK';
 export const LOAD_TRACKS = 'LOAD_TRACKS';
 export const PLAY_TRACK = 'PLAY_TRACK';
@@ -19,9 +19,9 @@ export const changeTerm = (term) => {
   }
 };
 
-export const submitForm = () => {
+export const submitSearchForm = () => {
   return {
-    type: SUBMIT_FORM
+    type: SUBMIT_SEARCH_FORM
   }
 };
 
