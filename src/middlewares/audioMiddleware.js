@@ -1,27 +1,9 @@
 import {
   PAUSE_TRACK,
-  PLAY_NEXT_TRACK,
   PLAY_TRACK,
   playNextTrack,
   updateDuration,
-  selectTrack,
-  playTrack
 } from '../actions';
-
-const loadNextTrack = (store) => {
-  const { tracks, trackSelected } = store.getState();
-
-  const currentIndexTrack = tracks.findIndex((track) => (track === trackSelected));
-
-  if(currentIndexTrack < tracks.length - 1) {
-    const track = tracks.find((track, index) => index > currentIndexTrack && track.preview_url);
-    store.dispatch(selectTrack(track));
-  } else {
-    const track = tracks.find(track => track.preview_url);
-    store.dispatch(selectTrack(track));
-  }
-  store.dispatch(playTrack());
-};
 
 const audioMiddleware = store => next => {
   const audio = new global.Audio();
@@ -45,9 +27,6 @@ const audioMiddleware = store => next => {
         break;
       case PAUSE_TRACK:
         audio.pause();
-        break;
-      case PLAY_NEXT_TRACK:
-        loadNextTrack(store);
         break;
       default:
         break;
