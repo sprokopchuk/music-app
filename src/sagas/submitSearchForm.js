@@ -21,7 +21,7 @@ function* fetchTracks() {
   yield put(loadTracks(tracks));
 }
 
-export default function* submitForm() {
+export default function* submitSearchForm() {
   yield takeEvery(SUBMIT_FORM, fetchTracks);
 }
 
