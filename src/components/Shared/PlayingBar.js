@@ -12,6 +12,10 @@ class PlayingBar extends React.Component {
   };
 
   render() {
+    if(!this.props.trackSelected) {
+      return null;
+    }
+
     return (
       <React.Fragment>
         {
@@ -37,13 +41,15 @@ PlayingBar.propTypes = {
   duration: PropTypes.number.isRequired,
   playTrack: PropTypes.func.isRequired,
   pauseTrack: PropTypes.func.isRequired,
-  updateDuration: PropTypes.func.isRequired
+  updateDuration: PropTypes.func.isRequired,
+  trackSelected: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
     isPlaying: state.isPlaying,
-    duration: state.duration
+    duration: state.duration,
+    trackSelected: state.trackSelected
   }
 };
 
