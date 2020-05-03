@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import SearchBar from './SearchBar';
-import AudioPlayer from './AudioPlayer';
 import UserPlaylist from './UserPlaylist';
 import GoogleAuth from './GoogleAuth';
 

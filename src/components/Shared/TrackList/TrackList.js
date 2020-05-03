@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectTrack, playTrack, pauseTrack } from '../../actions';
-import { isPresent } from '../../utils/collection';
+import { selectTrack, playTrack, pauseTrack } from '../../../actions';
+import { isPresent } from '../../../utils/collection';
 import TrackItem from './TrackItem';
 
 class TrackList extends React.Component {
