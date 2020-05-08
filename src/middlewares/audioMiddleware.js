@@ -1,32 +1,18 @@
-import {
-  PAUSE_TRACK,
-  PLAY_TRACK,
-  loadNextTrack,
-  updateDuration,
-} from '../actions';
+import { PAUSE_TRACK, PLAY_TRACK } from '../actions';
+import audioInstance from '../audioInstance'
 
-const audioMiddleware = store => next => {
-  const audio = new global.Audio();
-  audio.ontimeupdate = () => {
-    const duration = audio.currentTime / audio.duration * 100;
-    store.dispatch(updateDuration(duration));
-  };
-
-  audio.onended = () => {
-    store.dispatch(loadNextTrack());
-  };
-
+export default store => next => {
   return action => {
     switch (action.type) {
       case PLAY_TRACK:
         const { trackSelected } = store.getState();
-        if(audio.src !== trackSelected.preview_url) {
-          audio.src = trackSelected.preview_url
+        if(audioInstance.src !== trackSelected.preview_url) {
+          audioInstance.src = trackSelected.preview_url
         }
-        audio.play();
+        audioInstance.play();
         break;
       case PAUSE_TRACK:
-        audio.pause();
+        audioInstance.pause();
         break;
       default:
         break;
@@ -35,5 +21,3 @@ const audioMiddleware = store => next => {
     next(action);
   };
 };
-
-export default audioMiddleware;
