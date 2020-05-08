@@ -4,7 +4,7 @@ import { pauseTrack, playTrack, selectTrack } from '../../actions';
 
 const mapStateToProps = state => {
   return {
-    tracks: state.tracks,
+    tracks: state.searchTracks,
     trackSelected: state.trackSelected,
     isPlaying: state.isPlaying
   }

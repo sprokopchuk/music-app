@@ -2,7 +2,7 @@
 export const CHANGE_TERM = 'CHANGE_TERM';
 export const SUBMIT_SEARCH_FORM = 'SUBMIT_SEARCH_FORM';
 export const SELECT_TRACK = 'SELECT_TRACK';
-export const LOAD_TRACKS = 'LOAD_TRACKS';
+export const LOAD_SEARCH_TRACKS = 'LOAD_SEARCH_TRACKS';
 export const PLAY_TRACK = 'PLAY_TRACK';
 export const PAUSE_TRACK = 'PAUSE_TRACK';
 export const UPDATE_DURATION = 'UPDATE_DURATION';
@@ -25,10 +25,10 @@ export const submitSearchForm = () => {
   }
 };
 
-export const loadTracks = (tracks) => {
+export const loadSearchTracks = (tracks) => {
   return {
-    type: LOAD_TRACKS,
-    tracks
+    type: LOAD_SEARCH_TRACKS,
+    searchTracks: tracks
   }
 };
 
