@@ -40,7 +40,6 @@ describe('loadNextTrack', () => {
     })
   });
 
-
   it('loads first track when selected track is last one', () => {
     const tracks = [
       { id: 1, preview_url: 'audio_url' },
