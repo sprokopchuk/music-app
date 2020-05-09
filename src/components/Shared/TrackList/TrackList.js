@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectTrack, playTrack, pauseTrack } from '../../actions';
-import { isPresent } from '../../utils/collection';
+import { isPresent } from '../../../utils/collection';
 import TrackItem from './TrackItem';
 
 class TrackList extends React.Component {
@@ -52,12 +50,4 @@ TrackList.propTypes = {
   selectTrack: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    tracks: state.tracks,
-    trackSelected: state.trackSelected,
-    isPlaying: state.isPlaying
-  }
-};
-
-export default connect(mapStateToProps, { selectTrack, playTrack, pauseTrack })(TrackList);
+export default TrackList;

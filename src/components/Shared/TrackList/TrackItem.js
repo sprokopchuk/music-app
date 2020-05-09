@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import '../../css/track_item.scss'
+import '../../../css/track_item.scss'
 
 const TrackItem = ({ track, onTrackClick, isPlaying, isSelected }) => {
   return (

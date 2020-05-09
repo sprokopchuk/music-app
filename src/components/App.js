@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import SearchBar from './SearchBar';
-import Playlist from './Playlist';
-import AudioPlayer from './AudioPlayer';
+import MusicSearch from './MusicSearch';
+import UserPlaylist from './UserPlaylist';
 import GoogleAuth from './GoogleAuth';
 
 const App = () => {
@@ -18,13 +17,8 @@ const App = () => {
         </div>
       </div>
       <div className='ui container'>
-        <Route exact path='/'>
-          <SearchBar/>
-        </Route>
-        <Route path='/playlist'>
-          <Playlist/>
-        </Route>
-        <AudioPlayer/>
+        <Route exact path='/' component={MusicSearch}/>
+        <Route path='/playlist' component={UserPlaylist}/>
       </div>
     </Fragment>
   )

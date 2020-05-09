@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeTerm, submitForm } from '../actions';
+import { changeTerm, submitSearchForm } from '../actions';
 
 class SearchBar extends React.Component {
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.submitForm();
+    this.props.submitSearchForm();
   };
 
   render() {
@@ -27,7 +27,7 @@ class SearchBar extends React.Component {
 SearchBar.propTypes = {
   term: PropTypes.string,
   changeTerm: PropTypes.func.isRequired,
-  submitForm: PropTypes.func.isRequired
+  submitSearchForm: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { changeTerm, submitForm })(SearchBar);
+export default connect(mapStateToProps, { changeTerm, submitSearchForm })(SearchBar);

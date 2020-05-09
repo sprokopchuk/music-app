@@ -1,6 +1,6 @@
 import {
   CHANGE_TERM,
-  LOAD_TRACKS,
+  LOAD_SEARCH_TRACKS,
   PAUSE_TRACK,
   PLAY_TRACK,
   SELECT_TRACK,
@@ -17,9 +17,9 @@ const changeTermReducer = (state = '', action) => {
   return state;
 };
 
-const trackListReducer = (state = [], action) => {
-  if(action.type === LOAD_TRACKS) {
-    return action.tracks;
+const searchTracksReducer = (state = [], action) => {
+  if(action.type === LOAD_SEARCH_TRACKS) {
+    return action.searchTracks;
   }
 
   return state;
@@ -62,7 +62,7 @@ const authReducer = (state = {}, action) => {
 
 export default combineReducers({
   term: changeTermReducer,
-  tracks: trackListReducer,
+  searchTracks: searchTracksReducer,
   trackSelected: selectTrackReducer,
   isPlaying: togglePlayReducer,
   duration: updateDurationReducer,

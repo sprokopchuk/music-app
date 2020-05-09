@@ -1,7 +1,7 @@
 import googleAuthSettings from '../api/googleAuth';
 import { takeEvery, all, call, put } from 'redux-saga/effects';
 import { TRY_SIGN_IN, TRY_SIGN_OUT, changeAuthState } from '../actions';
-import { loadScript } from './scripts';
+import { loadScript } from './utils/scripts';
 
 const loadGoogleAuth2 = () => new Promise(resolve => {
   global.gapi.load('auth2', resolve)
