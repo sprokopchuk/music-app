@@ -60,9 +60,10 @@ export const updateDuration = (duration) => {
   }
 };
 
-export const loadNextTrack = () => {
+export const loadNextTrack = (key) => {
   return {
-    type: LOAD_NEXT_TRACK
+    type: LOAD_NEXT_TRACK,
+    key
   }
 };
 

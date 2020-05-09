@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar';
 import PlayingBar from '../Shared/PlayingBar';
 import audioInstance from '../../audioInstance';
 import { updateDuration, loadNextTrack } from '../../actions';
+import { SEARCH_TRACKS_KEY } from '../../constants/tracksKeys'
 
 class MusicSearch extends React.Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class MusicSearch extends React.Component {
     };
 
     audioInstance.onended = () => {
-      this.props.dispatch(loadNextTrack());
+      this.props.dispatch(loadNextTrack(SEARCH_TRACKS_KEY));
     };
   }
 
