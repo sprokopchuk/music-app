@@ -46,7 +46,7 @@ spotifyInstance.interceptors.response.use(response => response, error => {
       if (response.status === 200) {
         const token = response.data.access_token;
         saveToLocalStorage(ACCESS_TOKEN, token);
-        spotifyInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
         return spotifyInstance(originalRequest);
       }
     });
