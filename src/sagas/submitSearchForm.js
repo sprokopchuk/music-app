@@ -15,6 +15,7 @@ function* fetchTracks() {
     if (response.status === 200) {
       return response.data.tracks.items
     } else {
+      console.warning('Can not fetch tracks from spotify API');
       return [];
     }
   });
