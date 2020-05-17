@@ -52,9 +52,17 @@ const updateDurationReducer = (state = 0, action) => {
   return state;
 };
 
-const authReducer = (state = {}, action) => {
+const INITIAL_AUTH_STATE = {
+  isSignedIn: false,
+  userId: null
+};
+
+const authReducer = (state = INITIAL_AUTH_STATE, action) => {
   if (action.type === CHANGE_AUTH) {
-    return { ...state, isSignedIn: action.payload };
+    return { ...state,
+      isSignedIn: action.payload.isSignedIn,
+      userId: action.payload.userId
+    };
   }
 
   return state;

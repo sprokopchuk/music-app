@@ -13,8 +13,10 @@ const initAuth2 = () => global.gapi.auth2.init({
 });
 
 function* updateAuthState() {
-  const isSignedIn = global.gapi.auth2.getAuthInstance().isSignedIn.get();
-  yield put(changeAuthState(isSignedIn));
+  const authInstance = global.gapi.auth2.getAuthInstance();
+  const isSignedIn = authInstance.isSignedIn.get();
+  const userId = authInstance.currentUser.get().getId();
+  yield put(changeAuthState({ isSignedIn: isSignedIn, userId: userId }));
 }
 
 function *prepareGoogleAuth() {

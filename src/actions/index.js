@@ -79,10 +79,10 @@ export const trySignOut = () => {
   }
 };
 
-export const changeAuthState = (isSignedIn) => {
+export const changeAuthState = (auth) => {
   return {
     type: CHANGE_AUTH,
-    payload: isSignedIn
+    payload: auth
   }
 };
 
