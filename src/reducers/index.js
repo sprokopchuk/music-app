@@ -26,7 +26,6 @@ const searchTracksReducer = (state = [], action) => {
     case CHANGE_SEARCH_TRACK_STATE:
       return state.map(track => {
         if(track.id === action.payload.id) {
-          console.log(action.payload);
           return { ...track, isSaved: !track.isSaved };
         } else {
           return track;
