@@ -10,6 +10,8 @@ export const LOAD_NEXT_TRACK = 'LOAD_NEXT_TRACK';
 export const TRY_SIGN_IN = 'TRY_SIGN_IN';
 export const TRY_SIGN_OUT = 'TRY_SIGN_OUT';
 export const CHANGE_AUTH = 'CHANGE_AUTH';
+export const CHANGE_SEARCH_TRACK_STATE = 'CHANGE_SEARCH_TRACK_STATE';
+export const UPDATE_SEARCH_TRACK = 'UPDATE_SEARCH_TRACK';
 
 // action creators
 export const changeTerm = (term) => {
@@ -79,10 +81,24 @@ export const trySignOut = () => {
   }
 };
 
-export const changeAuthState = (auth) => {
+export const changeAuthState = auth => {
   return {
     type: CHANGE_AUTH,
     payload: auth
+  }
+};
+
+export const changeSearchTrackState = track => {
+  return {
+    type: CHANGE_SEARCH_TRACK_STATE,
+    payload: track
+  }
+};
+
+export const updateSearchTrack = track => {
+  return {
+    type: UPDATE_SEARCH_TRACK,
+    payload: track
   }
 };
 

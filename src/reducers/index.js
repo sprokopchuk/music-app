@@ -5,7 +5,9 @@ import {
   PLAY_TRACK,
   SELECT_TRACK,
   UPDATE_DURATION,
-  CHANGE_AUTH
+  CHANGE_AUTH,
+  CHANGE_SEARCH_TRACK_STATE,
+  UPDATE_SEARCH_TRACK,
 } from '../actions';
 import { combineReducers } from 'redux';
 
@@ -18,11 +20,29 @@ const changeTermReducer = (state = '', action) => {
 };
 
 const searchTracksReducer = (state = [], action) => {
-  if(action.type === LOAD_SEARCH_TRACKS) {
-    return action.searchTracks;
+  switch(action.type) {
+    case LOAD_SEARCH_TRACKS:
+      return action.searchTracks;
+    case CHANGE_SEARCH_TRACK_STATE:
+      return state.map(track => {
+        if(track.id === action.payload.id) {
+          console.log(action.payload);
+          return { ...track, isSaved: !track.isSaved };
+        } else {
+          return track;
+        }
+      });
+    case UPDATE_SEARCH_TRACK:
+      return state.map(track => {
+        if(track.id === action.payload.id) {
+          return { ...track, savedTrackId: track.isSaved ? action.payload.savedTrackId : null };
+        } else {
+          return track;
+        }
+      });
+    default:
+      return state;
   }
-
-  return state;
 };
 
 const selectTrackReducer = (state = null, action) => {

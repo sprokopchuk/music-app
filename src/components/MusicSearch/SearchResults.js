@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TrackList from '../Shared/TrackList';
-import { pauseTrack, playTrack, selectTrack } from '../../actions';
+import { pauseTrack, playTrack, selectTrack, changeSearchTrackState } from '../../actions';
 
 const mapStateToProps = state => {
   return {
@@ -10,4 +10,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { selectTrack, playTrack, pauseTrack })(TrackList);
+export default connect(mapStateToProps, { selectTrack, playTrack, pauseTrack, changeSearchTrackState })(TrackList);

@@ -7,9 +7,7 @@ export default (userId, trackIds = []) => {
         user_id: userId,
         track_id: trackIds
       }
-    }).then(response => {
-      return response.data.map(item => item.track_id)
-    })
+    }).then(response => response.data)
   } else {
     // load tracks from local storage
     return Promise.resolve([]);

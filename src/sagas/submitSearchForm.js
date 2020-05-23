@@ -1,7 +1,7 @@
 import spotify from '../api/spotify';
 import { put, takeEvery, select } from 'redux-saga/effects';
 import { loadSearchTracks, SUBMIT_SEARCH_FORM } from '../actions';
-import fetchSavedUserTrackIds from './utils/fetchSavedUserTrackIds'
+import fetchSavedUserTracks from './utils/fetchSavedUserTracks'
 
 const getTerm = state => state.term;
 const getUserId = state => state.auth.userId;
@@ -22,8 +22,16 @@ function* fetchTracks() {
     }
   });
   const userId = yield select(getUserId);
-  const userTrackIds = yield fetchSavedUserTrackIds(userId, tracks.map(track => track.id));
-  const updatedTracks = tracks.map(track => userTrackIds.includes(track.id) ? {...track, isSaved: true } : track);
+  const userSavedTracks = yield fetchSavedUserTracks(userId, tracks.map(track => track.id));
+
+  const updatedTracks = tracks.map(track => {
+    const savedTrack = userSavedTracks.find(item => item.track_id === track.id);
+    if(!!savedTrack) {
+      return {...track, isSaved: true, savedTrackId: savedTrack.id }
+    } else {
+      return {...track, isSaved: false, savedTrackId: null }
+    }
+  });
   yield put(loadSearchTracks(updatedTracks));
 
 }
