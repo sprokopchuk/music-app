@@ -32,6 +32,6 @@ function* updateTrackState(action) {
   }
 }
 
-export default function* watchSaveUnsaveTrack() {
+export default function* watchSaveUnsaveSearchTrack() {
   yield takeEvery(CHANGE_SEARCH_TRACK_STATE, updateTrackState);
 }
