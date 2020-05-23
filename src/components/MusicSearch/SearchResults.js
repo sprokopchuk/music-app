@@ -10,4 +10,11 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { selectTrack, playTrack, pauseTrack, changeSearchTrackState })(TrackList);
+export default connect(
+  mapStateToProps,
+  { selectTrack,
+    playTrack,
+    pauseTrack,
+    changeTrackState: changeSearchTrackState
+  })
+(TrackList);

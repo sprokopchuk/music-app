@@ -7,14 +7,14 @@ const getUserId = state => state.auth.userId;
 function* deleteSavedTrack(track) {
   const response = yield server.delete(`/tracks/${track.savedTrackId}`);
   if(response.status === 200) {
-    yield put(updateSearchTrack(track));
+    yield put(updateSearchTrack({ ...track, savedTrackId: null, isSaved: false }));
   }
 }
 
 function* saveTrackToUserPlaylist(track, userId) {
   const response = yield server.post('/tracks', { track_id: track.id, user_id: userId });
   if(response.status === 201) {
-    yield put(updateSearchTrack({...track, savedTrackId: response.data.id }));
+    yield put(updateSearchTrack({ ...track, savedTrackId: response.data.id, isSaved: true }));
   }
 }
 
