@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { getFromLocalStorage, saveToLocalStorage } from '../utils/browserStorage';
 
-const CLIENT_ID = 'dd8c0d9d0bc1413eb4294d6cd058b0d2';
-const CLIENT_SECRET = '7442b20b2abd4a66967e61fce8ff0468';
+const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 const ACCESS_TOKEN = 'spotify_token';
 
 const getAccessToken = () => {
