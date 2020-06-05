@@ -1,4 +1,4 @@
-import { takeEvery, select, call, put, all } from 'redux-saga/effects'
+import { takeEvery, select, call, put } from 'redux-saga/effects'
 import server from '../api/server'
 import {
   CHANGE_TRACK_STATE,

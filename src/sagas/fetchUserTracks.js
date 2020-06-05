@@ -1,6 +1,7 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
 import { CHANGE_AUTH, loadUserTracks } from '../actions';
 import fetchSpotifyTracks from './utils/fetchSpotifyTracks';
+import server from '../api/server';
 
 const getUserId = state => state.auth.userId;
 
