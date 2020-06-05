@@ -5,7 +5,11 @@ import {
   PLAY_TRACK,
   SELECT_TRACK,
   UPDATE_DURATION,
-  CHANGE_AUTH
+  CHANGE_AUTH,
+  UPDATE_SEARCH_TRACK,
+  LOAD_USER_TRACKS,
+  ADD_TRACK_TO_USER,
+  DELETE_TRACK_FROM_USER
 } from '../actions';
 import { combineReducers } from 'redux';
 
@@ -18,11 +22,20 @@ const changeTermReducer = (state = '', action) => {
 };
 
 const searchTracksReducer = (state = [], action) => {
-  if(action.type === LOAD_SEARCH_TRACKS) {
-    return action.searchTracks;
+  switch(action.type) {
+    case LOAD_SEARCH_TRACKS:
+      return action.searchTracks;
+    case UPDATE_SEARCH_TRACK:
+      return state.map(track => {
+        if(track.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return track;
+        }
+      });
+    default:
+      return state;
   }
-
-  return state;
 };
 
 const selectTrackReducer = (state = null, action) => {
@@ -52,12 +65,33 @@ const updateDurationReducer = (state = 0, action) => {
   return state;
 };
 
-const authReducer = (state = {}, action) => {
+const INITIAL_AUTH_STATE = {
+  isSignedIn: false,
+  userId: null
+};
+
+const authReducer = (state = INITIAL_AUTH_STATE, action) => {
   if (action.type === CHANGE_AUTH) {
-    return { ...state, isSignedIn: action.payload };
+    return { ...state,
+      isSignedIn: action.payload.isSignedIn,
+      userId: action.payload.userId
+    };
   }
 
   return state;
+};
+
+const userTracksReducer = (state = [], action) => {
+  switch (action.type) {
+    case LOAD_USER_TRACKS:
+      return action.payload;
+    case ADD_TRACK_TO_USER:
+      return [...state, action.payload];
+    case DELETE_TRACK_FROM_USER:
+      return state.filter(track => track.id !== action.payload.id)
+    default:
+      return state;
+  }
 };
 
 export default combineReducers({
@@ -66,7 +100,8 @@ export default combineReducers({
   trackSelected: selectTrackReducer,
   isPlaying: togglePlayReducer,
   duration: updateDurationReducer,
-  auth: authReducer
+  auth: authReducer,
+  userTracks: userTracksReducer
 })
 
 

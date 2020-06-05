@@ -16,7 +16,7 @@ class TrackList extends React.Component {
   }
 
   render (){
-    const { tracks, trackSelected, isPlaying } = this.props;
+    const { tracks, trackSelected, isPlaying, changeTrackState } = this.props;
     return (
       <React.Fragment>
         {
@@ -30,6 +30,7 @@ class TrackList extends React.Component {
                     isSelected={track.preview_url && trackSelected === track}
                     onTrackClick={() => this.onTrackClick(track) }
                     isPlaying={isPlaying}
+                    onTrackClickToggle={() => changeTrackState(track)}
                   />))
                 }
               </div>
@@ -47,7 +48,8 @@ TrackList.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   playTrack: PropTypes.func.isRequired,
   pauseTrack: PropTypes.func.isRequired,
-  selectTrack: PropTypes.func.isRequired
+  selectTrack: PropTypes.func.isRequired,
+  changeTrackState: PropTypes.func.isRequired
 };
 
 export default TrackList;

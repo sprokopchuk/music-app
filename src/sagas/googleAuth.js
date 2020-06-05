@@ -1,6 +1,6 @@
 import googleAuthSettings from '../api/googleAuth';
 import { takeEvery, all, call, put } from 'redux-saga/effects';
-import { TRY_SIGN_IN, TRY_SIGN_OUT, changeAuthState } from '../actions';
+import { TRY_SIGN_IN, TRY_SIGN_OUT, changeAuthState, loadSearchTracks } from '../actions';
 import { loadScript } from './utils/scripts';
 
 const loadGoogleAuth2 = () => new Promise(resolve => {
@@ -13,8 +13,11 @@ const initAuth2 = () => global.gapi.auth2.init({
 });
 
 function* updateAuthState() {
-  const isSignedIn = global.gapi.auth2.getAuthInstance().isSignedIn.get();
-  yield put(changeAuthState(isSignedIn));
+  const authInstance = global.gapi.auth2.getAuthInstance();
+  const isSignedIn = authInstance.isSignedIn.get();
+  let userId = null;
+  if(isSignedIn) userId = authInstance.currentUser.get().getId();
+  yield put(changeAuthState({ isSignedIn: isSignedIn, userId: userId }));
 }
 
 function *prepareGoogleAuth() {
@@ -31,6 +34,7 @@ function* trySignIn() {
 
 function* trySignOut() {
   yield call(global.gapi.auth2.getAuthInstance().signOut);
+  yield put(loadSearchTracks([]));
   yield call(updateAuthState);
 }
 

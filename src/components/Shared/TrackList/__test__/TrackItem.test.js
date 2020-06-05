@@ -14,7 +14,7 @@ describe('<TrackItem />', () => {
 
     const wrapper = shallow(<TrackItem {...props} />);
 
-    expect(wrapper.find('.icon').hasClass('pause')).toBe(true)
+    expect(wrapper.find('.music').hasClass('pause')).toBe(true)
   });
 
   it('renders play icon', () => {
@@ -27,7 +27,7 @@ describe('<TrackItem />', () => {
 
     const wrapper = shallow(<TrackItem {...props} />);
 
-    expect(wrapper.find('.icon').hasClass('play')).toBe(true)
+    expect(wrapper.find('.music').hasClass('play')).toBe(true)
   });
 
   it('renders disabled icon', () => {
@@ -40,6 +40,6 @@ describe('<TrackItem />', () => {
 
     const wrapper = shallow(<TrackItem {...props} />);
 
-    expect(wrapper.find('.icon').hasClass('disabled')).toBe(true)
+    expect(wrapper.find('.music').hasClass('disabled')).toBe(true)
   });
 });

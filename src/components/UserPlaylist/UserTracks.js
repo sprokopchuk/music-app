@@ -4,7 +4,7 @@ import { pauseTrack, playTrack, selectTrack, changeTrackState } from '../../acti
 
 const mapStateToProps = state => {
   return {
-    tracks: state.searchTracks,
+    tracks: state.userTracks,
     trackSelected: state.trackSelected,
     isPlaying: state.isPlaying
   }
