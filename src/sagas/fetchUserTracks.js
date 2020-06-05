@@ -1,7 +1,6 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
 import { CHANGE_AUTH, loadUserTracks } from '../actions';
-import server from '../api/server';
-import spotify from '../api/spotify';
+import fetchSpotifyTracks from './utils/fetchSpotifyTracks';
 
 const getUserId = state => state.auth.userId;
 
@@ -19,17 +18,7 @@ function* fetchUserTracks() {
     // fetch from local storage
   }
 
-  const response = yield spotify.get('/tracks', {
-    params: {
-      ids: userSavedTracks.map(item => item.track_id).join(',')
-    }
-  });
-  let spotifyTracks = [];
-  if(response.status === 200) {
-    spotifyTracks = response.data.tracks;
-  } else {
-    console.warn('Can not fetch user tracks from spotify!');
-  }
+  const spotifyTracks = yield fetchSpotifyTracks(userSavedTracks);
 
   const updatedTracks = spotifyTracks.map(track => {
     const savedTrack = userSavedTracks.find(item => item.track_id === track.id);
