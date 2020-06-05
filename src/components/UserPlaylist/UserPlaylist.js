@@ -18,8 +18,18 @@ class UserPlaylist extends React.Component {
   }
 
   render() {
-    return <UserTracks />
+    if(this.props.auth.isSignedIn) {
+      return <UserTracks/>;
+    } else {
+      return <h1 className='ui header center aligned'>To save tracks into playlist you have to sign in!</h1>;
+    }
   }
 }
 
-export default connect()(UserPlaylist);
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+};
+
+export default connect(mapStateToProps)(UserPlaylist);
