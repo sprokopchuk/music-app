@@ -15,7 +15,8 @@ const initAuth2 = () => global.gapi.auth2.init({
 function* updateAuthState() {
   const authInstance = global.gapi.auth2.getAuthInstance();
   const isSignedIn = authInstance.isSignedIn.get();
-  const userId = authInstance.currentUser.get().getId();
+  let userId = null;
+  if(isSignedIn) userId = authInstance.currentUser.get().getId();
   yield put(changeAuthState({ isSignedIn: isSignedIn, userId: userId }));
 }
 
