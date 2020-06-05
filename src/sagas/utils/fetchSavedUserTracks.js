@@ -9,7 +9,6 @@ export default (userId, trackIds = []) => {
       }
     }).then(response => response.data)
   } else {
-    // load tracks from local storage
     return Promise.resolve([]);
   }
 };

@@ -9,14 +9,16 @@ function* fetchUserTracks() {
   const userId = yield select(getUserId);
   let userSavedTracks = [];
   if(userId !== null) {
-    const resp = yield server.get('/tracks', { user_id: userId });
+    const resp = yield server.get('/tracks', {
+      params: {
+        user_id: userId
+      }
+    });
     if(resp.status === 200) {
       userSavedTracks = resp.data;
     } else {
       console.warn('Can not fetch user tracks from server!');
     }
-  } else {
-    // fetch from local storage
   }
 
   const spotifyTracks = yield fetchSpotifyTracks(userSavedTracks);
