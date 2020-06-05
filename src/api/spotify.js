@@ -17,14 +17,14 @@ const getAccessToken = () => {
   })
 };
 
-const spotifyInstance = axios.create({
+const spotify = axios.create({
   baseURL: 'https://api.spotify.com/v1/',
   headers: {
     'Content-Type': 'application/json'
   }
 });
 
-spotifyInstance.interceptors.request.use(
+spotify.interceptors.request.use(
   config => {
     const token = getFromLocalStorage(ACCESS_TOKEN);
     if (token) {
@@ -36,7 +36,7 @@ spotifyInstance.interceptors.request.use(
   error => Promise.reject(error)
 );
 
-spotifyInstance.interceptors.response.use(response => response, error => {
+spotify.interceptors.response.use(response => response, error => {
   const originalRequest = error.config;
 
   if (error.response.status === 401 && !originalRequest._retry) {
@@ -47,7 +47,7 @@ spotifyInstance.interceptors.response.use(response => response, error => {
         const token = response.data.access_token;
         saveToLocalStorage(ACCESS_TOKEN, token);
 
-        return spotifyInstance(originalRequest);
+        return spotify(originalRequest);
       }
     });
   }
@@ -55,4 +55,6 @@ spotifyInstance.interceptors.response.use(response => response, error => {
   return Promise.reject(error);
 });
 
-export default spotifyInstance;
+export default spotify;
+
+
