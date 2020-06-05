@@ -7,6 +7,9 @@ import {
   UPDATE_DURATION,
   CHANGE_AUTH,
   UPDATE_SEARCH_TRACK,
+  LOAD_USER_TRACKS,
+  ADD_TRACK_TO_USER,
+  DELETE_TRACK_FROM_USER
 } from '../actions';
 import { combineReducers } from 'redux';
 
@@ -78,13 +81,27 @@ const authReducer = (state = INITIAL_AUTH_STATE, action) => {
   return state;
 };
 
+const userTracksReducer = (state = [], action) => {
+  switch (action.type) {
+    case LOAD_USER_TRACKS:
+      return action.payload;
+    case ADD_TRACK_TO_USER:
+      return [...state, action.payload];
+    case DELETE_TRACK_FROM_USER:
+      return state.filter(track => track.id !== action.payload.id)
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   term: changeTermReducer,
   searchTracks: searchTracksReducer,
   trackSelected: selectTrackReducer,
   isPlaying: togglePlayReducer,
   duration: updateDurationReducer,
-  auth: authReducer
+  auth: authReducer,
+  userTracks: userTracksReducer
 })
 
 

@@ -10,8 +10,11 @@ export const LOAD_NEXT_TRACK = 'LOAD_NEXT_TRACK';
 export const TRY_SIGN_IN = 'TRY_SIGN_IN';
 export const TRY_SIGN_OUT = 'TRY_SIGN_OUT';
 export const CHANGE_AUTH = 'CHANGE_AUTH';
-export const CHANGE_SEARCH_TRACK_STATE = 'CHANGE_SEARCH_TRACK_STATE';
+export const CHANGE_TRACK_STATE = 'CHANGE_TRACK_STATE';
 export const UPDATE_SEARCH_TRACK = 'UPDATE_SEARCH_TRACK';
+export const LOAD_USER_TRACKS = 'LOAD_USER_TRACKS';
+export const ADD_TRACK_TO_USER = 'ADD_TRACK_TO_USER';
+export const DELETE_TRACK_FROM_USER = 'DELETE_TRACK_FROM_USER';
 
 // action creators
 export const changeTerm = (term) => {
@@ -88,9 +91,9 @@ export const changeAuthState = auth => {
   }
 };
 
-export const changeSearchTrackState = track => {
+export const changeTrackState = track => {
   return {
-    type: CHANGE_SEARCH_TRACK_STATE,
+    type: CHANGE_TRACK_STATE,
     payload: track
   }
 };
@@ -102,3 +105,23 @@ export const updateSearchTrack = track => {
   }
 };
 
+export const loadUserTracks = tracks => {
+  return {
+    type: LOAD_USER_TRACKS,
+    payload: tracks
+  }
+};
+
+export const addTrackToUserPlaylist = track => {
+  return {
+    type: ADD_TRACK_TO_USER,
+    payload: track
+  }
+};
+
+export const deleteTrackFromUserPlaylist = track => {
+  return {
+    type: DELETE_TRACK_FROM_USER,
+    payload: track
+  }
+};
