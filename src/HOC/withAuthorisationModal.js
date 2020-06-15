@@ -37,19 +37,22 @@ const withAuthorisationModal = WrappedComponent => ({ isSignedIn, ownProps }) =>
     render() {
       return (
         <Fragment>
-          <Modal
-            isOpen={this.state.isSignedModalOpen}
-            onRequestClose={this.onCloseModal}
-            className='Modal-content ui page modal visible active'
-            overlayClassName='ui dimmer modals page visible active'
-          >
-            <div className='header'>
-              In order to continue you have to sign in!
-            </div>
-            <div className='content'>
-              <GoogleAuth />
-            </div>
-          </Modal>
+          {
+            this.state.isSignedModalOpen &&
+            <Modal
+              isOpen={this.state.isSignedModalOpen}
+              onRequestClose={this.onCloseModal}
+              className='Modal-content ui page modal visible active'
+              overlayClassName='ui dimmer modals page visible active'
+            >
+              <div className='header'>
+                In order to continue you have to sign in!
+              </div>
+              <div className='content'>
+                <GoogleAuth />
+              </div>
+            </Modal>
+          }
           <WrappedComponent {...ownProps} onClick={this.onClickAuthorizationRequired} />
         </Fragment>
       )
