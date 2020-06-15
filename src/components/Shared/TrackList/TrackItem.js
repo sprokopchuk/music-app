@@ -2,6 +2,16 @@ import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import '../../../css/track_item.scss'
+import withAuthorisationModal from '../../../HOC/withAuthorisationModal';
+
+const SaveUnsaveIcon = withAuthorisationModal(({ track, onClick }) => {
+  return (
+    <i
+      className={cn('star icon red link middle aligned', { 'outline': !track.isSaved } )}
+      onClick={onClick}
+    />
+  );
+});
 
 const TrackItem = ({ track, onTrackClick, isPlaying, isSelected, onTrackClickToggle }) => {
   return (
@@ -18,10 +28,7 @@ const TrackItem = ({ track, onTrackClick, isPlaying, isSelected, onTrackClickTog
         <div className='header'>{track.name}</div>
         {track.artists.map(artist => artist.name).join(', ')}
       </div>
-      <i
-        className={cn('star icon red link middle aligned', { 'outline': !track.isSaved } )}
-        onClick={onTrackClickToggle}
-      />
+      <SaveUnsaveIcon track={track} onClick={onTrackClickToggle} />
     </div>
   );
 };
