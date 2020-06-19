@@ -3,6 +3,7 @@ import { NavLink, Route } from 'react-router-dom';
 import MusicSearch from './MusicSearch';
 import UserPlaylist from './UserPlaylist';
 import GoogleAuth from './GoogleAuth';
+import PlayingBar from './Shared/PlayingBar';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route exact path='/' component={MusicSearch}/>
         <Route path='/playlist' component={UserPlaylist}/>
       </div>
+      <PlayingBar />
     </Fragment>
   )
 };

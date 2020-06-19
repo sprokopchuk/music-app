@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import SearchResults from './SearchResults';
 import SearchBar from '../SearchBar';
-import PlayingBar from '../Shared/PlayingBar';
 import audioInstance from '../../audioInstance';
 import { updateDuration, loadNextTrack } from '../../actions';
 import { SEARCH_TRACKS_KEY } from '../../constants/tracksKeys'
@@ -24,7 +23,6 @@ class MusicSearch extends React.Component {
       <Fragment>
         <SearchBar/>
         <SearchResults/>
-        <PlayingBar/>
       </Fragment>
     )
   }

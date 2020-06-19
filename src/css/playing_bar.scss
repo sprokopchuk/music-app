@@ -2,8 +2,9 @@
   bottom: 0;
   display: flex;
   text-align: center;
-  position: sticky;
+  position: fixed;
   height: 100px;
+  width: 100%;
 
   .play, .pause {
     cursor: pointer;
